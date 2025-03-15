@@ -4,11 +4,13 @@
 
 **Table of Contents**
 
-<!-- [TOC] -->
+[TOC]
 
-<br>
+---
 
-## Java Architecture
+## Hi, I'm Java!
+
+### Java Architecture
 
 ![](https://miro.medium.com/v2/resize:fit:1400/1*lLBwoFv6RAZ15vRuK6yFQg.png)
 
@@ -18,29 +20,31 @@
 
 **JVM (Java Virtual Machine)** – Mesin virtual yang menjalankan _bytecode_ Java di perangkat keras.
 
-## How _Java_ Works?
+<br>
+
+### How _Java_ Works?
 
 Gambar berikut menjelaskan bagaimana **_Java_** bekerja, dari proses menulis kode hingga menjalankan program di sistem operasi. Berikut adalah tahapan-tahapan utama dalam proses tersebut:
 
 ![](https://media.licdn.com/dms/image/v2/C4E12AQFHYeU8N2ZDCw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1651746917137?e=2147483647&v=beta&t=6AzWmgQVEkGpvTalSPWYX0BVagXGGbT83FOM9Xj75ds)
 
-### Tahap 1-3: Menulis Kode Sumber Java
+#### Tahap 1-3: Menulis Kode Sumber Java
 
 Seorang **developer (programmer)** menulis program menggunakan bahasa Java. Program ini dibuat dalam bentuk file teks dengan ekstensi `.java`. Misalnya, dalam gambar ditunjukkan file dengan nama `HelloWorld.java`. Kode sumber ini berisi instruksi-instruksi dalam bahasa pemrograman Java yang masih bisa dibaca manusia, namun belum dapat langsung dijalankan oleh komputer.
 
-### Tahap 4-6: Kompilasi Kode Sumber ke _Bytecode_
+#### Tahap 4-6: Kompilasi Kode Sumber ke _Bytecode_
 
 Setelah kode sumber selesai ditulis, langkah berikutnya adalah **kompilasi** menggunakan Java Compiler yang disebut **`javac`**. Kompilasi ini dilakukan untuk mengubah kode sumber Java menjadi **bytecode**, yang merupakan bentuk instruksi yang lebih efisien tetapi tidak dapat dibaca langsung oleh manusia. Hasil dari proses ini adalah file `.class`, misalnya `HelloWorld.class`. File ini berisi bytecode, yaitu serangkaian instruksi yang tidak bergantung pada sistem operasi atau perangkat keras tertentu.
 
-### Tahap 7-10: Eksekusi _Bytecode_ dengan JVM
+#### Tahap 7-10: Eksekusi _Bytecode_ dengan JVM
 
 Setelah kode dikompilasi menjadi _bytecode_, langkah berikutnya adalah menjalankannya dengan menggunakan **Java Virtual Machine (JVM)**. JVM berfungsi sebagai interpreter yang menerjemahkan _bytecode_ ke dalam instruksi yang dapat dimengerti oleh sistem operasi. Karena Java menggunakan JVM, program yang telah dikompilasi dapat dijalankan di berbagai sistem operasi tanpa perlu dikompilasi ulang. Inilah yang membuat Java dikenal dengan konsep **"Write Once, Run Anywhere (WORA)"**.
 
-### Tahap 11: Menampilkan Output Program
+#### Tahap 11: Menampilkan Output Program
 
 Setelah JVM mengeksekusi _bytecode_, hasil dari eksekusi ini akan dikirim ke **sistem operasi**, yang kemudian menampilkan outputnya di layar. Misalnya, jika program ditulis untuk mencetak teks **"Hello World"**, maka sistem operasi akan menampilkan teks tersebut kepada pengguna.
 
-<br>
+---
 
 ## OOP Basic
 
@@ -304,16 +308,234 @@ public class Main {
 }
 ```
 
+---
+
 ### Class Diagram
 
-**Class Diagram** adalah visualisasi yang digunakan dalam **UML (Unified Modeling Language)** untuk menggambarkan struktur suatu kelas dalam pemrograman berorientasi objek (OOP). Komponen dari visualisasi ini akan terdiri dari:
+**Class Diagram** adalah visualisasi yang digunakan dalam **UML (Unified Modeling Language)** untuk menggambarkan struktur suatu kelas dalam pemrograman berorientasi objek (OOP). Class diagram dibuat ketika kita ingin merancang aplikasi yang akan kita buat, artinya sebelum kita _ngoding_ kita harus buat class diagram-nya terlebih dahulu. _Nahh_, class diagram tersebut nantinya bakal jadi acuan waktu _ngoding_ nantinya. Class diagram akan terdiri dari komponen-komponen berikut:
 
 - **Nama _Class_**
-- **_Attribute_ (Variabel)**
-- **_Methods_ (Fungsi)**
-- **_Relationship_ (Association, Inheritance, Aggregation, Composition)**
+- **Attribute (Variabel)**
+- **Methods (Fungsi)**
+- **Relationship (Association, Aggregation, Composition)**
+
+#### Common Components
+
+_Eitss_, tapi kita tidak boleh sembarangan _lho_ dalam membuat class diagram. Karena sudah terstandar UML, class diagram harus dibuat berdasarkan aturan berikut.
 
 ![](https://khalilstemmler.com/img/blog/object-oriented/uml/uml-class-diagram-cheat-sheet.png)
+
+#### Class Diagram Format
+
+| **ClassName**                                                                                                     |
+| ----------------------------------------------------------------------------------------------------------------- |
+| `visibility` Attribute A: datatype <br> `visibility` Attribute B: datatype <br> ...                               |
+| `visibility` Operation A(`arg list`): return type <br> `visibility` Operation B(`arg list`): return type <br> ... |
+
+**Keterangan:**
+
+- `visibility` = access modifier symbols
+  ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTePsEaJpEwcPu1KZKTpDoqaw08LD1N_ropFg&s)
+- `arg list` = parameter
+- `attribute` = variabel
+- `operation` = method/constructor
+
+<br>
+
+##### **Catatan Penulisan**
+
+Setelah kita paham tentang bagaimana komponen-komponen dalam class diagram, sekarang kita perlu paham _nih_ bagaimana cara kita membuat class diagram. Dalam pembuatan class diagram Java, ada beberapa aturan standar yang perlu diperhatikan sebagai berikut:
+
+**1. Nama Class**
+
+📌 **Aturan:**
+
+- Nama class harus menggunakan huruf kapital di awal (**PascalCase**).
+- Jika terdiri dari lebih dari satu kata, gunakan huruf kapital untuk setiap kata.
+
+**Contoh:**  
+✅ `Mobil`, `BankAccount`, `PelangganVIP`  
+❌ `mobil`, `bankaccount`, `pelangganvip`
+
+<br>
+
+**2. Nama Method**
+
+📌 **Aturan:**
+
+- Nama method harus menggunakan huruf kecil di awal, dan kata berikutnya menggunakan huruf kapital (**camelCase**).
+- Nama method **harus menggunakan kata kerja** karena menunjukkan aksi.
+- Boolean method biasanya diawali dengan `is`, `has`, atau `can`.
+
+🔹 **Contoh umum:**  
+✅ `getNama()`, `hitungTotalHarga()`, `tampilkanInfo()`  
+❌ `GetNama()`, `Hitung_total_harga()`, `tampilkan_info()`
+
+🔹 **Contoh Boolean Method:**  
+✅ `isAktif()`, `hasDiskon()`, `canWithdraw()`  
+❌ `cekAktif()`, `diskonAda()`, `bolehTarik()`
+
+<br>
+
+**3. `arg list` dalam UML**
+
+📌 **Aturan:**
+
+- Dalam UML, daftar parameter method **hanya mencantumkan tipe data** (tanpa nama variabel).
+- Dalam Java, parameter menggunakan **camelCase**.
+
+<br>
+
+**4. Method yang Tidak Mengembalikan Nilai**
+
+📌 **Aturan:**
+
+- Jika sebuah method tidak mengembalikan nilai, gunakan `void`.
+- Method `void` biasanya digunakan untuk **menjalankan aksi** tanpa menghasilkan output yang dapat dikembalikan.
+
+<br>
+
+**5. Static Method dan Static Field**
+
+📌 **Aturan:**
+
+- Dalam **UML**, method atau field `static` **digarisbawahi (underlining)** namun di beberapa kasus dibuat _italic_.
+
+<br>
+
+**6. Final Field (Konstanta)**
+
+📌 **Aturan:**
+
+- Field `final` (konstanta) ditulis dalam **HURUF_KAPITAL** dan menggunakan **underscore** untuk pemisah kata.
+- Jika `final` digunakan tanpa `static`, maka nilai atribut masih bisa berbeda untuk setiap objek.
+- Jika `final` digunakan bersama `static`, maka nilainya **bersifat konstan untuk seluruh objek** dari class tersebut.
+
+#### **Contoh Class Diagram**
+
+Supaya lebih mudah memahami class diagram, kita akan mengambil contoh untuk membuat suatu class `Employee` dengan beberapa atribut seperti nama, gaji, id, dst.
+
+| Employee                                                                                                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| - name: String <br> - payRate: double <br> - ID: int <br> - _nextID_: int <br> +_STARTING_PAY_RATE_: double                                                                                                              |
+| + Employee(String) <br> + Employee(String, double) <br> + getName(): String <br> + getID(): int <br> + getPayRate(): double <br> + changeName(String): void <br> + changePayRate(double): void <br> + _getNextID()_: int |
+
+Berdasarkan class diagram di atas, beberapa informasi yang bakal jadi acuan kita yaitu:
+
+- class `Employee` memiliki 5 atribut.
+- atribut `ID` dan `STARTING_PAY_RATE` dibuat kapital karena atribut **final**.
+- atribut `nextID` dan `STARTING_PAY_RATE` dibuat miring (boleh digaris bawah) karena atribut **static**.
+
+**Contoh Java Class berdasarkan Class Diagram**
+
+```java
+public class Employee {
+    private String name;
+    private double payRate;
+    private final int ID;
+    private static int nextID = 1000;
+    public static final double STARTING_PAY_RATE = 7.75;
+
+    public Employee(String name) {
+        this.name = name;
+        ID = getNextID();
+        payRate = STARTING_PAY_RATE;
+    }
+
+    public Employee(String name, double startingPay) {
+        this.name = name;
+        ID = getNextID();
+        payRate = startingPay;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public double getPayRate() {
+        return payRate;
+    }
+
+    public void changeName(String newName) {
+        name = newName;
+    }
+
+    public void changePayRate(double newRate) {
+        payRate = newRate;
+    }
+
+    public static int getNextID() {
+        int id = nextID;
+        nextID++;
+        return id;
+    }
+}
+```
+
+#### Relationship in Class Diagram
+
+##### Association
+
+**Asosiasi** adalah hubungan antara dua kelas yang **saling terhubung tetapi independen**. Tidak ada kepemilikan di antara mereka.
+
+**Analogi: Mobil dan Pengemudi**
+
+- **Mobil** dapat digunakan oleh **pengemudi** yang berbeda.
+- Pengemudi bisa mengendarai mobil yang berbeda.
+- Jika mobil rusak, pengemudi masih ada.
+- Jika pengemudi pindah kerja, mobil tetap ada.
+
+> <br>
+> Association bersifat "menggunakan" bukan "memiliki" <br>
+> <br>
+
+<br>
+
+##### Aggregation
+
+**Agregasi** adalah hubungan di mana satu objek **memiliki objek lain**, tetapi objek tersebut masih bisa ada tanpa objek pemiliknya.
+
+**Analogi: Mobil dan Mesin**
+
+- **Mobil** memiliki **Mesin**.
+- Jika mobil dihancurkan, mesin masih bisa dilepas dan dipakai di mobil lain.
+- Mesin bisa dipindahkan dari satu mobil ke mobil lain.
+
+> <br>
+> Aggregation menunjukkan "kepemilikan yang lemah", tetapi tetap ada keterikatan <br>
+> <br>
+
+<br>
+
+##### Composition
+
+**Komposisi** adalah hubungan di mana satu objek **memiliki objek lain secara eksklusif** dan jika objek pemilik dihapus, maka objek yang dimiliki juga ikut hilang.
+
+**Analogi: Mobil dan Rangka**
+
+- **Mobil** memiliki **rangka**.
+- Jika mobil dihancurkan, rangka mobil tentu tidak bisa digunakan lagi.
+- Rangka adalah bagian penting dari mobil, sehingga mobil tidak bisa ada tanpa rangka.
+
+> <br>
+> Hubungan ini menunjukkan "kepemilikan yang kuat" dan tidak bisa dipisahkan <br>
+> <br>
+
+<br>
+
+##### **Perbandingan Association, Aggregation, dan Composition**
+
+| **Jenis Hubungan** | **Definisi**                                                                                                    | **Tingkat Keterikatan** | **Simbol**                                        |
+| :----------------: | --------------------------------------------------------------------------------------------------------------- | :---------------------: | ------------------------------------------------- |
+|   _Association_    | Hubungan antara dua kelas tanpa kepemilikan                                                                     |          Lepas          | Garis lurus tanpa panah (`----`)                  |
+|   _Aggregation_    | Satu kelas memiliki kelas lain, tetapi yang dimiliki masih bisa berdiri sendiri                                 |         Longgar         | Garis dengan ujung belah ketupat kosong (`◇----`) |
+|   _Composition_    | Satu kelas memiliki kelas lain secara eksklusif, jika pemilik dihapus maka objek yang dimiliki juga ikut hilang |          Erat           | Garis dengan ujung belah ketupat penuh (`◆----`)  |
+
+---
 
 ## Four Pillars of OOP
 
