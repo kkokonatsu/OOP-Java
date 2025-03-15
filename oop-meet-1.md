@@ -390,7 +390,9 @@ _Eitss_, tapi kita tidak boleh sembarangan _lho_ dalam membuat class diagram. Ka
 **Keterangan:**
 
 - `visibility` = access modifier symbols
-  ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTePsEaJpEwcPu1KZKTpDoqaw08LD1N_ropFg&s)
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTePsEaJpEwcPu1KZKTpDoqaw08LD1N_ropFg&s)
+
 - `arg list` = parameter
 - `attribute` = variabel
 - `operation` = method/constructor
