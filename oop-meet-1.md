@@ -2,13 +2,41 @@
 
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmSmJgXu6kW8ONXMTLq0LD6BJGFV3Hoc0DRg&s)
 
-**Table of Contents**
+<!-- [TOC] -->
 
-[TOC]
+## **Table of Contents**
+
+- [Hi, I'm Java!](#hi-im-java)
+- [Java Architecture](#java-architecture)
+- [How _Java_ Works?](#how-java-works)
+  - [Tahap 1-3: Menulis Kode Sumber Java](#tahap-1-3-menulis-kode-sumber-java)
+  - [Tahap 4-6: Kompilasi Kode Sumber ke _Bytecode_](#tahap-4-6-kompilasi-kode-sumber-ke-bytecode)
+  - [Tahap 7-10: Eksekusi _Bytecode_ dengan JVM](#tahap-7-10-eksekusi-bytecode-dengan-jvm)
+  - [Tahap 11: Menampilkan Output Program](#tahap-11-menampilkan-output-program)
+- [OOP Basic](#oop-basic)
+- [Class vs Object](#class-vs-object)
+- [Constructor & Methods](#constructor--methods)
+- [Access Modifier](#access-modifier)
+- [Class Diagram](#class-diagram)
+  - [Common Components](#common-components)
+  - [Class Diagram Format](#class-diagram-format)
+  - [Contoh Class Diagram](#contoh-class-diagram)
+  - [Relationship in Class Diagram](#relationship-in-class-diagram)
+  - [Association](#association)
+  - [Aggregation](#aggregation)
+  - [Composition](#composition)
+  - [Perbandingan Association, Aggregation, dan Composition](#perbandingan-association-aggregation-dan-composition)
+- [Four Pillars of OOP](#four-pillars-of-oop)
+- [Encapsulation](#encapsulation)
+- [Inheritance](#inheritance)
+- [Polymorphism](#polymorphism)
+- [Abstraction](#abstraction)
 
 ---
 
-## Hi, I'm Java!
+## Hi, I'm Java!👋
+
+Halo! Aku adalah **Java**, salah satu bahasa pemrograman yang paling populer di dunia. Aku lahir pada tahun 1995 di bawah naungan **Sun Microsystems** dan sejak itu telah digunakan untuk membangun berbagai macam aplikasi, mulai dari **aplikasi desktop, sistem backend, hingga aplikasi mobile seperti Android**. Aku dikenal dengan prinsip **"Write Once, Run Anywhere (WORA)"**, yang berarti kode yang ditulis denganku dapat berjalan di berbagai sistem operasi tanpa perlu diubah. Itu semua berkat **Java Virtual Machine (JVM)** yang menerjemahkan instruksiku agar bisa dijalankan di berbagai perangkat. Dengan sintaks yang mudah dipahami, keamanan yang kuat, dan komunitas yang besar, aku siap membantumu menjadi seorang developer yang handal! 🚀
 
 ### Java Architecture
 
