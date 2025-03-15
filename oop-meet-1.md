@@ -596,7 +596,7 @@ public class Employee {
 
 Setelah kita paham tentang fundamental OOP, maka kita akan berkenalan lebih dalam dengan OOP. Ide dari OOP sendiri ternyata belum cukup hanya dijelaskan dengan konsep **class & object**. Konsep tersebut melahirkan beberapa ide lain yang akan menjadi submateri ke tiga kali ini yang disebut dengan **Four Pillars of OOP.**
 
-### 1<sup>st</sup> Pillar: Encapsulation
+### Encapsulation
 
 **Encapsulation** adalah konsep dalam OOP dengan **menyembunyikan atribut dari akses langsung** dan hanya dapat diakses melalui **method khusus (`getter` dan `setter`)**. Dengan konsep ini, kita bisa mengontrol bagaimana data suatu objek bisa diakses dan diubah.
 
@@ -734,7 +734,7 @@ Dengan menerapkan encapsulation, maka:
 
 <br>
 
-### 2<sup>nd</sup> Pillar: Inheritance
+### Inheritance
 
 **Inheritance** adalah konsep dalam OOP yang memungkinkan sebuah class **mewarisi atribut dan metode dari kelas lain (_parent_)** serupa dengan konsep pewarisan karakteristik (atribut/method) dari induk ke anak.
 
