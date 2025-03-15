@@ -48,7 +48,7 @@ _Italic_ _Italic_
 **Emphasis** **Emphasis**
 **_Emphasis Italic_** **_Emphasis Italic_**
 
-Superscript: X<sub>2</sub>，Subscript: O<sup>2</sup>
+Superscript: X<sup>2</sup>，Subscript: O<sub>2</sub>
 
 **Abbreviation(link HTML abbr tag)**
 
@@ -257,7 +257,7 @@ X&sup2; Y&sup3; &frac34; &frac14; &times; &divide; &raquo;
 
 - [x] GFM task list 1
 - [x] GFM task list 2
-- [ ] GFM task list 3
+- [x] GFM task list 3
   - [ ] GFM task list 3-1
   - [ ] GFM task list 3-2
   - [ ] GFM task list 3-3

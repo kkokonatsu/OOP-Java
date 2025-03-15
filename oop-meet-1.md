@@ -1,40 +1,28 @@
 # OOP: Chapter 1
 
-![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmSmJgXu6kW8ONXMTLq0LD6BJGFV3Hoc0DRg&s)
-
 <!-- [TOC] -->
 
 ## **Table of Contents**
 
 - [Hi, I'm Java!](#hi-im-java)
-- [Java Architecture](#java-architecture)
-- [How _Java_ Works?](#how-java-works)
-  - [Tahap 1-3: Menulis Kode Sumber Java](#tahap-1-3-menulis-kode-sumber-java)
-  - [Tahap 4-6: Kompilasi Kode Sumber ke _Bytecode_](#tahap-4-6-kompilasi-kode-sumber-ke-bytecode)
-  - [Tahap 7-10: Eksekusi _Bytecode_ dengan JVM](#tahap-7-10-eksekusi-bytecode-dengan-jvm)
-  - [Tahap 11: Menampilkan Output Program](#tahap-11-menampilkan-output-program)
-- [OOP Basic](#oop-basic)
-- [Class vs Object](#class-vs-object)
-- [Constructor & Methods](#constructor--methods)
-- [Access Modifier](#access-modifier)
-- [Class Diagram](#class-diagram)
-  - [Common Components](#common-components)
-  - [Class Diagram Format](#class-diagram-format)
-  - [Contoh Class Diagram](#contoh-class-diagram)
-  - [Relationship in Class Diagram](#relationship-in-class-diagram)
-  - [Association](#association)
-  - [Aggregation](#aggregation)
-  - [Composition](#composition)
-  - [Perbandingan Association, Aggregation, dan Composition](#perbandingan-association-aggregation-dan-composition)
+  - [Java Architecture](#java-architecture)
+  - [How _Java_ Works?](#how-java-works)
+- [Fundamental OOP](#fundamental-oop)
+  - [Class vs Object](#class-vs-object)
+  - [Constructor & Methods](#constructor--methods)
+  - [Access Modifier](#access-modifier)
+  - [Class Diagram](#class-diagram)
 - [Four Pillars of OOP](#four-pillars-of-oop)
-- [Encapsulation](#encapsulation)
-- [Inheritance](#inheritance)
-- [Polymorphism](#polymorphism)
-- [Abstraction](#abstraction)
+  - [Encapsulation](#encapsulation)
+  - [Inheritance](#inheritance)
+  - [Polymorphism](#polymorphism)
+  - [Abstraction](#abstraction)
 
 ---
 
 ## Hi, I'm Java!👋
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmSmJgXu6kW8ONXMTLq0LD6BJGFV3Hoc0DRg&s)
 
 Halo! Aku adalah **Java**, salah satu bahasa pemrograman yang paling populer di dunia. Aku lahir pada tahun 1995 di bawah naungan **Sun Microsystems** dan sejak itu telah digunakan untuk membangun berbagai macam aplikasi, mulai dari **aplikasi desktop, sistem backend, hingga aplikasi mobile seperti Android**. Aku dikenal dengan prinsip **"Write Once, Run Anywhere (WORA)"**, yang berarti kode yang ditulis denganku dapat berjalan di berbagai sistem operasi tanpa perlu diubah. Itu semua berkat **Java Virtual Machine (JVM)** yang menerjemahkan instruksiku agar bisa dijalankan di berbagai perangkat. Dengan sintaks yang mudah dipahami, keamanan yang kuat, dan komunitas yang besar, aku siap membantumu menjadi seorang developer yang handal! 🚀
 
@@ -49,6 +37,16 @@ Halo! Aku adalah **Java**, salah satu bahasa pemrograman yang paling populer di 
 **JVM (Java Virtual Machine)** – Mesin virtual yang menjalankan _bytecode_ Java di perangkat keras.
 
 <br>
+
+#### Sebuah Analogi Arsitektur Java 🎭
+
+> Bayangkan kamu adalah seorang **sutradara film** yang ingin membuat dan menayangkan film di berbagai bioskop. Dalam dunia Java, **JDK (Java Development Kit)** adalah seperti **studio film** yang menyediakan semua alat produksi, seperti kamera, editor, dan efek khusus, agar kamu bisa membuat film dengan sempurna.
+>
+> Setelah film selesai, kamu memerlukan **JRE (Java Runtime Environment)**, yang bisa diibaratkan sebagai **bioskop** tempat film bisa diputar—bioskop ini sudah memiliki layar, proyektor, dan kursi penonton agar pengalaman menonton menjadi nyaman.
+>
+> _Tapi_, agar film bisa benar-benar diproyeksikan ke layar, bioskop membutuhkan seorang **operator proyektor** yang mengerti cara menampilkan film dalam format yang sesuai. Di sinilah **JVM (Java Virtual Machine)** berperan—sebagai **operator proyektor** yang menerjemahkan format film (_bytecode Java_) menjadi tampilan yang bisa dinikmati di berbagai layar (_sistem operasi_).
+>
+> Dengan kombinasi ini, film yang dibuat di satu studio bisa diputar di banyak bioskop tanpa perlu diubah formatnya, seperti halnya kode Java yang bisa berjalan di berbagai perangkat berkat konsep **Write Once, Run Anywhere (WORA).** <br> <br>
 
 ### How _Java_ Works?
 
@@ -74,7 +72,7 @@ Setelah JVM mengeksekusi _bytecode_, hasil dari eksekusi ini akan dikirim ke **s
 
 ---
 
-## OOP Basic
+## Fundamental OOP
 
 Pemrograman Berorientasi Objek (_Object-Oriented Programming_ atau OOP) adalah **paradigma pemrograman** yang mengacu pada konsep **object**. Dalam OOP, program dibangun menggunakan **class** yang merupakan cetakan untuk membuat **object**. Berikut adalah konsep dasar dalam OOP menggunakan analogi sederhana agar lebih mudah dipahami.
 
@@ -183,7 +181,10 @@ class Mobil {
     String warna;
     double harga;
 
-    // Constructor
+    // Constructor tanpa parameter
+    Mobil(){}
+
+    // Constructor dengan parameter
     Mobil(String merk, String warna, double harga) {
         this.merk = merk;
         this.warna = warna;
@@ -209,6 +210,14 @@ class Mobil {
 // Menggunakan methods dalam program
 public class Main {
     public static void main(String[] args) {
+
+        // Membuat instance dengan cara 1: memanggil constructor tanpa parameter
+        Mobil avanzaPutih = new Mobil()
+        avanzaPutih.merk = "Toyota Avanza";
+        avanzaPutih.warna = "Putih";
+        avanzaPutih.harga = 250000000;
+
+        // Membuat instance dengan cara 2: memanggil constructor dengan parameter
         Mobil avanzaPutih = new Mobil("Toyota Avanza", "Putih", 250000000);
 
         // Memanggil methods untuk melakukan aksi
@@ -231,6 +240,24 @@ public class Main {
 | **Nama harus sama dengan class?** | ✅ Ya                                        | ❌ Tidak harus sama dengan class                              |
 | **Digunakan untuk apa?**          | Menentukan bagaimana objek dibuat            | Menentukan apa yang bisa dilakukan oleh objek                 |
 | **Contoh di dunia nyata**         | Menentukan spesifikasi mobil sebelum membeli | Menghidupkan mesin, membunyikan klakson                       |
+
+<br>
+
+**Tambahan:**
+
+keyword `static` :
+
+- `static` dalam Java digunakan untuk membuat atribut atau metode milik kelas, bukan milik objek tertentu. Keyword `static` bisa digunakan pada atribut maupun method.
+- **Atribut `static`** → Nilai atribut dibagikan untuk semua objek dari kelas tersebut.
+- **Method `static`** → Method dapat dipanggil tanpa membuat objek.
+
+keyword `final` :
+
+- `final` digunakan untuk membuat atribut atau metode yang **tidak bisa diubah atau diwarisi**.
+- **Atribut `final`** → Atribut tidak bisa diubah setelah diinisialisasi.
+- **Method `final`** → Method tidak bisa di-_override_ oleh subclass. (akan dibahas lebih lanjut di [Inheritance](#inheritance))
+
+Penggunaan kedua keyword tersebut (`static final`) pada atribut bisa membuat suatu atribut menjadi sebuah KONSTANTA yang bisa diakses di mana pun. Namun, pemakaiannya di method jarang digunakan.
 
 <br>
 
@@ -567,19 +594,358 @@ public class Employee {
 
 ## Four Pillars of OOP
 
-### Encapsulation
+Setelah kita paham tentang fundamental OOP, maka kita akan berkenalan lebih dalam dengan OOP. Ide dari OOP sendiri ternyata belum cukup hanya dijelaskan dengan konsep **class & object**. Konsep tersebut melahirkan beberapa ide lain yang akan menjadi submateri ke tiga kali ini yang disebut dengan **Four Pillars of OOP.**
 
-### Inheritance
+### 1<sup>st</sup> Pillar: Encapsulation
+
+**Encapsulation** adalah konsep dalam OOP dengan **menyembunyikan atribut dari akses langsung** dan hanya dapat diakses melalui **method khusus (`getter` dan `setter`)**. Dengan konsep ini, kita bisa mengontrol bagaimana data suatu objek bisa diakses dan diubah.
+
+> <br> Bayangkan sebuah **mobil** yang memiliki berbagai komponen, seperti mesin, rem, dan roda. Sebagai pengemudi, kita tidak bisa langsung mengakses mesin secara langsung saat berkendara. Kita hanya bisa mengontrol mobil melalui **pedal gas, rem, dan setir** tanpa perlu mengatur bagaimana mesin bekerja secara internal. Hal tersebut menunjukkan terdapat fitur-fitur dari disembunyikan dari pengemudi. Apabila kita ingin mengubah pengaturan mesin maka kita perlu montir (`getter` dan `setter`). Ide tersebut memastikan bahwa **mobil tetap aman** dan **tidak rusak karena salah penggunaan** <br> <br>
+
+Sebelumnya kita sudah membahas tentang **access modifier**. _Nah_, pada pilar ini kita akan memanfaatkan _access modifier_ `private` atau `protected` untuk mengamankan atribut-atribut pada suatu class. Perhatikan contoh berikut.
+
+<br>
+
+#### ❌ **Contoh Tanpa Encapsulation (Data Tidak Aman)**
+
+```java
+class Mobil {
+    public String merk;
+    public int kecepatan;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Mobil mobilSaya = new Mobil();
+        mobilSaya.merk = "Toyota";
+        mobilSaya.kecepatan = -50; // ❌ ERROR LOGIKA: Kecepatan tidak boleh negatif!
+
+        System.out.println("Mobil: " + mobilSaya.merk);
+        System.out.println("Kecepatan: " + mobilSaya.kecepatan + " km/jam");
+    }
+}
+```
+
+📌 **Masalah:**
+
+- Atribut bisa diakses dan diubah secara langsung, yang bisa menyebabkan kesalahan logika (contoh: kecepatan negatif).
+- Tidak ada perlindungan terhadap nilai yang tidak valid.
+
+<br>
+
+#### ✅ Dengan Encapsulation (Data Aman)
+
+Sekarang, jika ingin menerapkan encapsulation maka kita perlu mengatur hak akses untuk setiap atribut menjadi `private` sehingga tidak bisa diubah secara langsung.
+
+```java
+class Mobil {
+    private String merk;
+    private int kecepatan;
+
+    // Constructor untuk menginisialisasi mobil
+    public Mobil(String merk) {
+        this.merk = merk;
+        this.kecepatan = 0; // Mobil diam saat dibuat
+    }
+}
+```
+
+***Lalu, bagaimana *dong* cara kita mengubah nilai kecepatan?***
+
+Di sinilah, kita perlu membuat `getter` dan `setter`
+
+- `getter` adalah method yang digunakan untuk **menampilkan nilai nilai** atribut private tanpa mengubahnya.
+- `setter` adalah method yang digunakan untuk **mengubah ulang nilai** dari atribut private.
+
+Berikut kita lengkapi class `Mobil` dengan menambahkan `getter`, `setter`, dan method lain (`tambahKecepatan` dan `kurangiKecepatan`) untuk mengelola perubahan nilai.
+
+```java
+class Mobil {
+    private String merk;
+    private int kecepatan;
+
+    // Constructor untuk menginisialisasi mobil
+    public Mobil(String merk) {
+        this.merk = merk;
+        this.kecepatan = 0; // Mobil diam saat dibuat
+    }
+
+    // Getter untuk membaca merk mobil
+    public String getMerk() {
+        return merk;
+    }
+
+    // Getter untuk membaca kecepatan
+    public int getKecepatan() {
+        return kecepatan;
+    }
+
+    // Method untuk menambah kecepatan dengan batasan
+    public void tambahKecepatan(int jumlah) {
+        if (jumlah > 0) {
+            kecepatan += jumlah;
+            System.out.println("Mobil " + merk + " bertambah kecepatan menjadi " + kecepatan + " km/jam.");
+        } else {
+            System.out.println("Kecepatan harus bertambah positif!");
+        }
+    }
+
+    // Method untuk mengurangi kecepatan dengan batasan
+    public void kurangiKecepatan(int jumlah) {
+        if (jumlah > 0 && kecepatan - jumlah >= 0) {
+            kecepatan -= jumlah;
+            System.out.println("Mobil " + merk + " berkurang kecepatan menjadi " + kecepatan + " km/jam.");
+        } else {
+            System.out.println("Kecepatan tidak boleh negatif!");
+        }
+    }
+}
+```
+
+<br>
+
+Apabila di coba akses di `main.java` akan seperti berikut.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Mobil mobilSaya = new Mobil("Toyota");
+
+        // Mengakses data dengan getter
+        System.out.println("Mobil: " + mobilSaya.getMerk());
+        System.out.println("Kecepatan Awal: " + mobilSaya.getKecepatan() + " km/jam");
+
+        // Menambah dan mengurangi kecepatan dengan kontrol yang aman
+        mobilSaya.tambahKecepatan(50);
+        mobilSaya.kurangiKecepatan(20);
+        mobilSaya.kurangiKecepatan(100); // ❌ Tidak bisa, kecepatan tidak boleh negatif!
+    }
+}
+```
+
+Dengan menerapkan encapsulation, maka:
+
+- Kecepatan mobil tidak bisa diubah secara langsung dari luar kelas.
+- Mobil tidak bisa memiliki kecepatan negatif.
+- Data hanya bisa diakses melalui method yang aman.
+- Jika ada perubahan aturan kecepatan, hanya method terkait yang perlu diperbarui.
+
+> <br> Jadi, mulai sekarang ketika Anda membuat class maka kalian harus mengatur **atribut menjadi `private`** serta **membuat `getter` dan `setter`** untuk setiap atribut tersebut. <br> <br>
+
+<br>
+
+### 2<sup>nd</sup> Pillar: Inheritance
+
+**Inheritance** adalah konsep dalam OOP yang memungkinkan sebuah class **mewarisi atribut dan metode dari kelas lain (_parent_)** serupa dengan konsep pewarisan karakteristik (atribut/method) dari induk ke anak.
+
+- **Superclass (Kelas Induk)** → Kelas utama yang mendefinisikan atribut dan metode dasar.
+- **Subclass (Kelas Anak)** → Kelas yang mewarisi dari superclass dan bisa menambahkan atau mengubah perilaku.
+
+Inheritance memungkinkan **kode menjadi lebih efisien dan terstruktur**, karena subclass tidak perlu mendefinisikan ulang fitur yang sudah ada di superclass.
+
+> <br>Bayangkan ada **mobil generik** yang memiliki karakteristik dasar seperti jumlah roda, warna, dan mesin. Lalu, ada **mobil listrik** dan **mobil sport** yang merupakan jenis khusus dari mobil generik. Mobil listrik memiliki baterai, sedangkan mobil sport memiliki turbo. Semua jenis mobil ini tetap memiliki karakteristik dasar yang sama seperti jumlah roda dan mesin, tetapi mereka juga memiliki fitur tambahan masing-masing. <br><br>
+
+Lalu, bagaimana contohnya? Saat ini sudah marak produksi mobil listrik seperti Hyundai, Tesla, BYD, dsb. Secara umum tidak ada perbedaan antar mobil biasa dan mobil listri, hanya saja mobil listrik menggunakan sumber tenaga dari baterai.
+
+Maka, kita dapat menjadikan class `Mobil` sebagai superclass.
+
+```java
+// Superclass: Mobil
+class Mobil {
+    private String merk;
+    private String warna;
+    private double harga;
+
+    // Constructor untuk menentukan spesifikasi mobil
+    Mobil(String merk, String warna, double harga) {
+        this.merk = merk;
+        this.warna = warna;
+        this.harga = harga;
+    }
+
+    // Method untuk menampilkan informasi mobil
+    protected void tampilkanInfo() {
+        System.out.println("Mobil " + merk + " berwarna " + warna + ", dengan harga Rp " + harga);
+    }
+
+    // getter dan setter
+    ...
+}
+```
+
+Karena kesamaan karakteristik dari mobil listrik dengan mobil biasa, maka kita akan membuat class `MobilListrik` sebagai subclass yang meng-_extend_ class `Mobil` tanpa perlu menuliskan ulang atribut atau method yang berkaitan dengan mobil secara umum. Kita hanya perlu menambahkan atribut dan method yang menjadi ciri khas dari mobil listrik yaitu `kapasitasBaterai` dan `infoBaterai()`.
+
+```java
+// Subclass: MobilListrik (Mewarisi dari Mobil)
+class MobilListrik extends Mobil {
+    private int kapasitasBaterai;
+
+    // constructor 1
+    MobilListrik(){}
+
+    // constructor 2
+    MobilListrik(String merk, String warna, double harga, double kapasitasBaterai) {
+        super(merk, warna, harga); // untuk memanggil constructor di superclass
+        this.kapasitasBaterai = kapasitasBaterai;
+    }
+
+    void infoBaterai() {
+        System.out.println("Baterai saat ini " + kapasitasBaterai + " persen");
+    }
+
+    // getter dan setter
+    ...
+}
+```
+
+_Wah_ ada hal baru lagi _nih_, pada constructor subclass di atas terdapat keyword `super`. Jadi, dengan keyword tersebut kita dapat memanggil atribut ataupun method dari superclass. Pada konteks di atas, setiap kali objek `MobilListrik` dibuat maka untuk inisialisasi nilai pada atribut superclass cukup memanggil constructor dari superclass dengan `super()` lalu menambahkan inisialiasi untuk atribut khas dari `MobilListrik` yaitu `kapasitasBaterai`.
+
+Sehingga, pada `Main.java` dapat dilakukan percobaan sebagai berikut.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        MobilListrik hyundaiIoniq5 = new MobilListrik();
+        // Mewarisi atribut dari Mobil
+        hyundaiIoniq5.merk = "Hyundai Ioniq 5";
+        hyundaiIoniq5.warna = "Putih";
+        hyundaiIoniq5.harga = 831100000;
+
+        // Atribut tambahan di subclass
+        hyundaiIoniq5.kapasitasBaterai = 100;
+
+        hyundaiIoniq5.tampilkanInfo();  // Memanggil method dari superclass
+        hyundaiIoniq5.infoBaterai(); // Memanggil method dari subclass
+    }
+}
+```
+
+**_Mudah sekali bukan?_**
+
+<br>
 
 ### Polymorphism
 
+Dalam OOP, polymorphism merupakan konsep di mana suatu class melakukan aksi yang sama dengan **implementasi berbeda** tergantung pada objek yang menggunakannya.
+
+> <br> Bayangkan Anda memiliki **mobil otomatis** dan **mobil manual**. Kedua mobil ini memiliki tujuan yang sama yaitu **dapat dikendarai**. Namun, cara mengoperasikannya berbeda. **Mobil otomatis** hanya perlu menekan tombol start engine, sedangkan **mobil manual** harus menggunakan kunci. <br> <br>
+
+Terdapat 2 jenis polymorphism, yaitu:
+
+- **Dynamic Polymorphism (_Overriding method_)** → Method yang sama dengan perilaku berbeda dalam subclass.
+- **Static Polymorphism (_Overloading method_)** → Dalam method overloading, kita bisa memiliki beberapa method dengan nama yang sama, tetapi parameter berbeda.
+
+<br>
+
+#### Contoh Dynamic Polymorphism
+
+Pada kasus inheritance sebelumnya, sering terjadi kondisi di mana subclass akan memodifikasi isi/logika dari method di superclass-nya. Aktivitas tersebut bisa dilakukan dengan teknik `overriding`. Misalnya, ketika mobil listrik dipanggil maka method `tampilkanInfo()` maka detail dari kapasitasBaterai akan ditampilkan juga. Sehingga, kita perlu meng-_override_ (menimpa) method tampilkanInfo() agar menambahkan atribut baru untuk ditampilkan.
+
+```java
+// Subclass: MobilListrik (Mewarisi dari Mobil)
+class MobilListrik extends Mobil {
+    private int kapasitasBaterai;
+
+    // constructor 1
+    MobilListrik(){}
+
+    // constructor 2
+    MobilListrik(String merk, String warna, double harga, double kapasitasBaterai) {
+        super(merk, warna, harga); // untuk memanggil constructor di superclass
+        this.kapasitasBaterai = kapasitasBaterai;
+    }
+
+    @Override
+     public void tampilkanInfo(){
+        System.out.println("Mobil Listrik " + super.getMerk() + " berwarna " + super.getWarna()
+        + ", dengan harga Rp " + super.getHarga() + " kapasitas baterai " + this.kapasitasBaterai);
+    }
+
+    void infoBaterai() {
+        System.out.println("Baterai saat ini " + kapasitasBaterai + " persen");
+    }
+
+    // getter dan setter
+    ...
+}
+```
+
+Namun, perlu diingat bahwa jika suatu method dari superclass memiliki keyword `final` maka method tersebut tidak bisa di-_override_ oleh subclass-nya.
+
+<br>
+
+#### Contoh Static Polymorphism
+
+Apabila kita ingin membuat method `infoBaterai()` baru dengan menambah parameter baru yaitu `tambahanDaya` dan `pengisianCepat` maka _overloading_ akan terjadi.
+
+```java
+// Subclass: MobilListrik (Mewarisi dari Mobil)
+class MobilListrik extends Mobil {
+    private int kapasitasBaterai;
+
+    // constructor 1
+    MobilListrik(){}
+
+    // constructor 2
+    MobilListrik(String merk, String warna, double harga, double kapasitasBaterai) {
+        super(merk, warna, harga); // untuk memanggil constructor di superclass
+        this.kapasitasBaterai = kapasitasBaterai;
+    }
+
+    @Override
+     public void tampilkanInfo(){
+        System.out.println("Mobil Listrik " + super.getMerk() + " berwarna " + super.getWarna()
+        + ", dengan harga Rp " + super.getHarga() + " kapasitas baterai " + this.kapasitasBaterai);
+    }
+
+    void infoBaterai() {
+        System.out.println("Baterai saat ini " + kapasitasBaterai + " persen");
+    }
+
+    // Overloaded method dengan satu parameter
+    void infoBaterai(double tambahanDaya) {
+        System.out.println("Baterai saat ini " + kapasitasBaterai +
+        " persen, akan ditambah " + tambahanDaya + "%");
+    }
+
+    // Overloading method dengan dua parameter
+    void infoBaterai(double tambahanDaya, boolean pengisianCepat) {
+        String metode = pengisianCepat ? "Fast Charging" : "Normal Charging";
+        System.out.println("Baterai saat ini " + kapasitasBaterai + " persen, akan ditambah "
+                + tambahanDaya + "% menggunakan " + metode + ".");
+    }
+
+    // getter dan setter
+    ...
+}
+```
+
+<br>
+
+Sehingga, saat method `infoBaterai()` dipanggil di `Main.java` maka Java akan memilih versi method yang sesuai berdasarkan jumlah dan tipe argumen yang diberikan.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // Membuat objek MobilListrik
+        MobilListrik tesla = new MobilListrik("Tesla", "Putih", 1500000000, 80);
+
+        // Menampilkan informasi mobil listrik
+        tesla.tampilkanInfo();
+
+        // Memanggil metode infoBaterai dengan overloading
+        tesla.infoBaterai(); // Tanpa parameter
+        tesla.infoBaterai(15); // Dengan parameter tambahan daya
+        tesla.infoBaterai(20, true); // Dengan parameter tambahan daya dan mode pengisian cepat
+    }
+}
+```
+
 ### Abstraction
 
+akan dibahas di pertemuan 2 (Minggu, 23 Maret 2025) 👋
+
 # End
-
-```
-
-```
 
 ```
 
