@@ -1,5 +1,9 @@
 # OOP: Chapter 1
 
+composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
+
+![alt text](1.png)
+
 <!-- [TOC] -->
 
 ## **Table of Contents**
