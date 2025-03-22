@@ -949,10 +949,10 @@ public class Main {
 
 ### Abstraction
 
-akan dibahas di pertemuan 2 (Minggu, 23 Maret 2025) 👋
+akan dibahas di [Pertemuan 2](https://github.com/kkokonatsu/OOP-Java/blob/main/oop-meet-2.md) (Minggu, 23 Maret 2025)
 
-# End
+# The End
 
 ```
-
+Have a nice day 👋
 ```
