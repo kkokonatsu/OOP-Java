@@ -8,19 +8,19 @@ composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
 ## **Table of Contents**
 
-<!-- - [Hi, I'm Java!](#hi-im-java)
-  - [Java Architecture](#java-architecture)
-  - [How _Java_ Works?](#how-java-works)
-- [Fundamental OOP](#fundamental-oop)
-  - [Class vs Object](#class-vs-object)
-  - [Constructor & Methods](#constructor--methods)
-  - [Access Modifier](#access-modifier)
-  - [Class Diagram](#class-diagram)
-- [Four Pillars of OOP](#four-pillars-of-oop)
-  - [Encapsulation](#encapsulation)
-  - [Inheritance](#inheritance)
-  - [Polymorphism](#polymorphism)
-  - [Abstraction](#abstraction) -->
+- [Four Pillars of OOP (Continue)](#four-pillars-of-oop-continue)
+  - [Concept of Abstraction](#concept-of-abstraction)
+  - [Abstract](#abstract)
+  - [Interface](#interface)
+  - [abstract vs interface](#abstract-vs-interface)
+- [Generic Type](#generic-type)
+  - [Without Generic Type](#without-generic-type)
+  - [With Generic Type](#with-generic-type)
+  - [Multiple Type Parameter](#multiple-type-parameter)
+  - [Generic Method](#generic-method)
+  - [Type Parameter Conventions](#type-parameter-conventions)
+- [Exception Handling](#exception-handling)
+  - [Throwing Exception](#throwing-exception)
 
 ---
 
