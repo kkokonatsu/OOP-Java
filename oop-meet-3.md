@@ -1,4 +1,4 @@
-# OOP: Chapter 2
+# OOP: Chapter 3
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
@@ -433,7 +433,7 @@ public interface Prototype {
 Prototype Interface adalah antarmuka yang mendeklarasikan metode `clone()`. Ini memastikan bahwa kelas-kelas yang mengimplementasikan interface ini dapat di-_clone_, yang merupakan ciri khas dari Prototype Pattern. Metode `clone()` yang dideklarasikan di sini memungkinkan objek untuk membuat salinan dirinya sendiri. Metode ini dapat mengembalikan objek baru yang merupakan salinan dari objek yang ada.
 
 ```java
-class ConcretePrototype implements Prototype {
+class ConcretePrototype implements Prototype, Cloneable {
     private String name;
     private int age;
 
