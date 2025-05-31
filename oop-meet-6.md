@@ -4,24 +4,18 @@ composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
 ![alt text](5.png)
 
-[TOC]
-
 ## **Table of Contents**
 
-<!-- - [Overview](#overview)
-  - [Graphical User Interface](#graphical-user-interface-gui)
-  - [Java Database Connectivity](#java-database-connectivity)
-- [Membangun Aplikasi GUI di Swift](#membangun-aplikasi-gui-di-swing)
-  - [Step 1: Buat Frame](#step-1-buat-frame)
-  - [Step 2: Tambahkan Control](#step-2-tambahkan-control)
-  - [Step 3: Bentukan Layout](#step-3-tentukan-layout)
-  - [Step 4: Pasang Event Handling](#step-4-pasang-event-handling)
-  - [Step 5: Buat Class Mahasiswa](#step-5-buat-class-mahasiswa)
-  - [Step 6: Pasang Event Handling](#step-6-pasang-event-handling)
-  - [Step 7: Jalankan di EDT](#step-7-jalankan-di-edt)
-- [Membangun Koneksi ke Database](#membangun-koneksi-ke-database)
-  - [Apa itu JDBC?](#apa-itu-jdbc)
-  - [Step by Step](#step-by-step) -->
+- [Pemrosesan Input/Output](#pemrosesan-io)
+  - [Pendahuluan](#pendahuluan)
+  - [Konsep Dasar I/O](#konsep-dasar-io-dalam-java)
+  - [Class-Class Kunci pada I/O](#class-class-kunci-pada-io)
+  - [Contoh Kode](#contoh-kode)
+- [Pemrograman Jaringan](#pemrograman-jaringan)
+  - [Pendahuluan](#pendahuluan-1)
+  - [Konsep Dasar Networking](#konsep-dasar-pemrograman-jaringan)
+  - [Class-Class Kunci pada Networking](#class-class-kunci-pada-networking)
+  - [Contoh Kode](#contoh-kode-1)
 
 ---
 
@@ -56,9 +50,13 @@ Stream adalah abstraksi aliran data. Bayangkan sebuah pipa air:
 
 Stream adalah cara untuk menangani data secara berurutan, satu per satu. Mereka bisa berupa _[byte stream](#byte-stream)_ (untuk data biner) atau _[character stream](#character-stream)_ (untuk data teks).
 
+<br>
+
 ### Exception Handling untuk I/O
 
 Operasi I/O seringkali dapat gagal karena berbagai alasan (misalnya, file tidak ditemukan, izin akses ditolak, jaringan terputus). Oleh karena itu, Java mewajibkan penanganan exception untuk operasi I/O. Sebagian besar metode I/O akan mendeklarasikan `IOException` atau _subclass_-nya, yang berarti Anda harus menangani exception tersebut menggunakan blok `try-catch` atau mendeklarasikan `throws IOException` pada metode Anda.
+
+<br>
 
 ### Menutup Stream
 
@@ -68,6 +66,109 @@ Sangat penting untuk selalu menutup stream setelah selesai menggunakannya. Kegag
 - **Data _Corrupt_/Hilang:** Data yang ditulis mungkin tidak sepenuhnya disimpan ke tujuan hingga stream ditutup.
 
 Java 7 memperkenalkan _try-with-resources statement_, yang secara otomatis menutup _stream_ (atau sumber daya lain yang mengimplementasikan _AutoCloseable_) setelah blok _try_ selesai, baik secara normal maupun karena _exception_. Ini adalah praktik terbaik yang sangat direkomendasikan.
+
+<br>
+
+### Buffer
+
+Dalam dunia komputer, memindahkan data (Input/Output) itu mirip seperti memindahkan air. Data perlu dibaca dari suatu sumber (misalnya, hard drive, jaringan) atau ditulis ke suatu tujuan (hard drive, jaringan, layar). Operasi I/O, terutama yang melibatkan perangkat fisik, adalah operasi yang sangat lambat dibandingkan dengan kecepatan CPU dan memori.
+
+Di sinilah konsep Buffer menjadi sangat penting.
+
+#### Apa itu Buffer?
+
+**Buffer** adalah area memori sementara yang digunakan untuk menyimpan data saat sedang dipindahkan antara dua lokasi. Sebagai aturan umum, selalu anggap bahwa Anda perlu menggunakan buffer untuk operasi I/O yang melibatkan file, jaringan, atau perangkat eksternal lainnya. Java Virtual Machine (JVM) dan sistem operasi sangat dioptimalkan untuk bekerja dengan buffer.
+
+Keuntungan penggunaan Buffer antara lain:
+
+1. Meningkatkan performa aplikasi
+2. Mengurangi Frekuensi Akses ke Disk/Jaringan secara langsung
+3. Menyediakan Fleksibilitas dalam Ukuran Data
+4. Memungkinkan Operasi `flush()` untuk memastikan data tidak hilang jika terjadi crash atau aplikasi ditutup
+
+<br>
+
+### Scanner
+
+Dalam Java, kelas `Scanner` yang berada di paket `java.util` adalah alat yang sangat berguna dan fleksibel untuk membaca input dari berbagai sumber. Tidak seperti kelas I/O lainnya (`BufferedReader`, `InputStreamReader`), _Scanner_ dirancang khusus untuk mengurai (_parse_) data primitif (seperti int, double, boolean) dan String menggunakan _regular expression_ dan tokenisasi. Ini membuatnya sangat mudah digunakan untuk memproses input berformat.
+
+Metode Scanner dapat dibagi menjadi dua kategori utama:
+
+#### `next()` dan `next<Type>()`
+
+- **Fungsi:** Membaca token berikutnya dari input.
+- **Delimiter:** Secara default, ia berhenti membaca saat menemukan karakter spasi putih (spasi, tab, enter/newline).
+- **Perilaku Pointer:** Setelah membaca token, pointer Scanner berhenti tepat setelah token yang dibaca, di depan delimiter. Ia tidak mengonsumsi karakter newline.
+
+**Contoh:**
+
+```java
+int angka = scanner.nextInt(); // angka = 123. Pointer setelah '3', sebelum spasi.
+String teks = scanner.next();  // teks = "ABC". Pointer setelah 'C', sebelum '\n'.
+// Karakter '\n' (newline) masih ada di buffer!
+```
+
+Gunakan `next()` (atau `nextInt()`, `nextDouble()`, dll.) ketika Anda ingin membaca satu "kata" atau satu nilai berformat (misalnya, nama depan, angka, satu token). Ingat untuk hati-hati dengan karakter newline yang tersisa jika Anda mencampur `next()` dengan `nextLine()`.
+
+<br>
+
+#### `nextLine()`
+
+- **Fungsi:** Membaca seluruh baris dari input hingga karakter _newline_ (\n) ditemukan.
+- **Delimiter:** Berhenti pada karakter _newline_.
+- **Perilaku Pointer:** Mengonsumsi karakter _newline_ dan memindahkan pointer `Scanner` ke awal baris berikutnya.
+
+**Contoh:**
+
+```java
+String baris1 = scanner.nextLine(); // baris1 = "Halo Dunia". Pointer setelah '\n' pertama.
+String baris2 = scanner.nextLine(); // baris2 = "Saya Java". Pointer setelah '\n' kedua.
+```
+
+Gunakan `nextLine()` ketika Anda ingin membaca seluruh baris input, termasuk spasi di dalamnya (misalnya, nama lengkap, alamat, kalimat panjang). Ini adalah pilihan terbaik untuk input teks yang memungkinkan spasi.
+
+<br>
+
+**Masalah Umum:**
+
+ketika `nextInt()` diikuti `nextLine()`
+
+Ini adalah jebakan umum bagi pemula. Karena `nextInt()` (atau `next()`, `nextDouble()`) tidak mengonsumsi karakter _newline_ (\n) setelah membaca token angka/kata, `nextLine()` yang dipanggil setelahnya akan segera membaca newline yang tersisa di buffer dan menganggapnya sebagai baris kosong.
+
+**Contoh:**
+
+```java
+Scanner scanner = new Scanner(System.in);
+
+System.out.print("Masukkan usia: ");
+int usia = scanner.nextInt(); // Membaca 25. '\n' masih ada di buffer.
+
+System.out.print("Masukkan kota: ");
+String kota = scanner.nextLine(); // Membaca '\n' yang tersisa. 'kota' akan kosong!
+
+System.out.println("Usia: " + usia);
+System.out.println("Kota: " + kota); // Akan menampilkan "Kota: " (kosong)
+```
+
+**Solusi:**
+
+Tambahkan `scanner.nextLine()` sebagai _dummy read_ setelah `nextInt()` untuk membersihkan karakter newline yang tersisa di buffer.
+
+```java
+Scanner scanner = new Scanner(System.in);
+
+System.out.print("Masukkan usia: ");
+int usia = scanner.nextInt();
+scanner.nextLine(); // MEMBUANG KARAKTER NEWLINE YANG TERSISA
+
+System.out.print("Masukkan kota: ");
+String kota = scanner.nextLine(); // Sekarang akan membaca "Jakarta" dengan benar
+
+System.out.println("Usia: " + usia);
+System.out.println("Kota: " + kota);
+```
+
+<br>
 
 ## Class-class Kunci pada I/O
 
@@ -178,11 +279,13 @@ Bayangkan Anda sedang membangun aplikasi catatan sederhana.
 
 ---
 
-## Contoh Kode Lengkap
+## Contoh Kode
 
 Berikut adalah contoh kode untuk berbagai skenario I/O.
 
-### Membaca Input dari Konsol menggunakan `Scanner`
+### Scanner
+
+#### Membaca Input dari Konsol menggunakan `Scanner`
 
 ```java
 import java.util.Scanner;
@@ -214,7 +317,9 @@ public class KonsolInput {
 }
 ```
 
-### Menulis dan Membaca Data Teks ke/dari File menggunakan `FileWriter` dan `FileReader` (tanpa buffering)
+### Character Stream
+
+#### Menulis dan Membaca Data Teks ke/dari File menggunakan `FileWriter` dan `FileReader` (tanpa buffering)
 
 ```java
 import java.io.FileReader;
@@ -249,7 +354,7 @@ public class FileTeksDasar {
 }
 ```
 
-### Menulis dan Membaca Data Teks ke/dari File menggunakan `BufferedWriter` dan `BufferedReader` (dengan buffering)
+#### Menulis dan Membaca Data Teks ke/dari File menggunakan `BufferedWriter` dan `BufferedReader` (dengan buffering)
 
 Ini adalah cara yang lebih efisien dan direkomendasikan untuk menangani file teks.
 
@@ -290,7 +395,9 @@ public class FileTeksBuffer {
 }
 ```
 
-### Menulis dan Membaca Data Biner ke/dari File menggunakan `FileOutputStream` dan `FileInputStream`
+### Byte Stream
+
+#### Menulis dan Membaca Data Biner ke/dari File menggunakan `FileOutputStream` dan `FileInputStream`
 
 ```java
 import java.io.FileInputStream;
@@ -327,7 +434,7 @@ public class FileBinerDasar {
 }
 ```
 
-### Menulis dan Membaca Tipe Data Primitif dengan `DataOutputStream` dan `DataInputStream`
+#### Menulis dan Membaca Tipe Data Primitif dengan `DataOutputStream` dan `DataInputStream`
 
 ```java
 import java.io.DataInputStream;
@@ -376,7 +483,7 @@ public class DataStreamContoh {
 }
 ```
 
-### Serialisasi dan Deserialisasi Objek dengan `ObjectOutputStream` dan `ObjectInputStream`
+#### Serialisasi dan Deserialisasi Objek dengan `ObjectOutputStream` dan `ObjectInputStream`
 
 Untuk menyimpan objek Java secara langsung, objek tersebut harus mengimplementasikan antarmuka _Serializable_.
 
@@ -463,6 +570,8 @@ public class ObjekSerialisasi {
 
 ## Pendahuluan
 
+**Jaringan** itu adalah sistem yang memungkinkan beberapa perangkat untuk **terhubung satu sama lain** menggunakan jalur unik tertentu, agar mereka bisa saling **bertukar informasi**.
+
 Dalam era digital modern, kemampuan aplikasi untuk berkomunikasi melalui jaringan adalah hal yang sangat penting. Dari aplikasi chat sederhana hingga sistem terdistribusi yang kompleks, pemrograman jaringan memungkinkan aplikasi untuk saling berinteraksi, berbagi data, dan menyediakan layanan. Java, dengan pustaka `java.net` yang kaya, menawarkan kerangka kerja Object-Oriented Programming (OOP) yang kuat untuk membangun aplikasi jaringan yang andal dan skalabel.
 
 ---
@@ -475,8 +584,19 @@ Pemrograman jaringan pada dasarnya melibatkan dua atau lebih program yang berkom
 
 ![alt](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Client-server-model.svg/1200px-Client-server-model.svg.png)
 
-- **Server:** Sebuah program yang menunggu (mendengarkan) koneksi dari klien, menyediakan layanan, dan merespons permintaan klien. Server biasanya berjalan terus-menerus. Ini seperti restoran atau toko yang selalu buka dan siap melayani pelanggan. Server menunggu permintaan dari "pelanggan" (klien), memprosesnya, lalu memberikan hasilnya.
-- **Client:** Sebuah program yang menginisiasi koneksi ke server, membuat permintaan, dan menerima respons dari server. Klien biasanya diaktifkan oleh pengguna. Ini seperti Anda yang datang ke restoran (server) untuk memesan makanan (membuat permintaan) dan menunggu makanan Anda disajikan (menerima respons). Klien memulai komunikasi.
+- **Server:** Sebuah program yang menyediakan layanan, menunggu koneksi dari klien, dan merespons permintaan klien. Server biasanya berjalan terus-menerus.
+- **Client:** Sebuah program yang menginisiasi koneksi ke server, membuat permintaan, dan menerima respons dari server. Klien biasanya diaktifkan oleh pengguna.
+
+**Analogi sederhana:**
+
+Bayangkan ketika Anda berada di restoran atau toko. Ketika toko/restoran tersebut dibuka, maka pelayan akan selalu siap untuk melayani pelanggan yang datang.
+
+- Pelanggan akan menjadi **client**, dan pelayan akan menjadi **server**
+- Ketika toko dibuka artinya **koneksi** ke jaringan dibuat.
+- Saat pelanggan memesan artinya **client** mengirim **request**.
+- Setelah itu, pelayan akan memproses pesanan dan mengirimkannya ketika pesanan telah rampung, artinya **pelayan** akan mengirimkan **response**.
+
+<br>
 
 ### Protokol Jaringan
 
@@ -484,7 +604,7 @@ Agar klien dan server dapat berkomunikasi, mereka harus berbicara dalam "bahasa"
 
 ![alt](https://media.geeksforgeeks.org/wp-content/uploads/20230406112559/TCP-3.png)
 
-- **TCP** (_Transmission Control Protocol_): Protokol berorientasi koneksi yang menjamin pengiriman data yang andal, berurutan, dan bebas kesalahan.Seperti menelepon teman. Sebelum bicara, Anda harus men-_dial_ nomor dan memastikan teman Anda mengangkat telepon (proses _handshake_ atau membangun koneksi). Setelah tersambung, percakapan Anda terjamin sampai, berurutan, dan jika ada yang terlewat, Anda bisa meminta diulang. Jika telepon mati, Anda harus mendial lagi. Cocok untuk aplikasi yang memerlukan keandalan tinggi seperti transfer file, web Browse, atau email.
+- **TCP** (_Transmission Control Protocol_): Protokol berorientasi koneksi yang **menjamin pengiriman data yang andal, berurutan, dan bebas kesalahan**.Seperti menelepon teman. Sebelum bicara, Anda harus men-_dial_ nomor dan memastikan teman Anda mengangkat telepon (proses _handshake_ atau membangun koneksi). Setelah tersambung, percakapan Anda terjamin sampai, berurutan, dan jika ada yang terlewat, Anda bisa meminta diulang. Jika telepon mati, Anda harus mendial lagi. Cocok untuk aplikasi yang memerlukan keandalan tinggi seperti transfer file, web Browse, atau email.
 
   - **Kapan dipakai?** Untuk komunikasi yang sangat penting dan harus sampai dengan utuh, seperti:
     - Mengirim email
@@ -495,7 +615,7 @@ Agar klien dan server dapat berkomunikasi, mereka harus berbicara dalam "bahasa"
 
 <br>
 
-- **UDP** (_User Datagram Protocol_): Protokol tanpa koneksi yang lebih cepat tetapi tidak menjamin pengiriman data atau urutan data. Seperti mengirim surat kilat. Anda menulis surat, masukkan ke amplop, dan langsung kirim. Anda tidak perlu memastikan apakah surat itu sampai, atau apakah sampai dalam urutan yang benar jika Anda kirim banyak surat. Mungkin saja suratnya hilang di jalan atau datang duluan yang terakhir Anda kirim. Cocok untuk aplikasi yang sensitif terhadap waktu dan dapat mentolerir kehilangan data, seperti streaming video/audio atau game online real-time.
+- **UDP** (_User Datagram Protocol_): Protokol tanpa koneksi yang lebih **cepat tetapi tidak menjamin pengiriman data atau urutan data**. Seperti mengirim surat kilat. Anda menulis surat, masukkan ke amplop, dan langsung kirim. Anda tidak perlu memastikan apakah surat itu sampai, atau apakah sampai dalam urutan yang benar jika Anda kirim banyak surat. Mungkin saja suratnya hilang di jalan atau datang duluan yang terakhir Anda kirim. Cocok untuk aplikasi yang sensitif terhadap waktu dan dapat mentolerir kehilangan data, seperti streaming video/audio atau game online real-time.
 
   - **Kapan dipakai?** Untuk komunikasi yang butuh kecepatan tinggi dan sedikit kehilangan data tidak masalah, seperti:
     - Streaming video/musik (lag sedikit tidak terlalu fatal)
@@ -509,8 +629,8 @@ Untuk mengidentifikasi sebuah aplikasi di suatu mesin dalam jaringan, kita membu
 
 ![alt](https://miro.medium.com/v2/resize:fit:713/1*inXJyc6F9icN_6nCgrqBwQ.png)
 
-- Alamat IP (Internet Protocol Address): Mengidentifikasi perangkat (komputer, server, smartphone) dalam jaringan. Contoh: 192.168.1.1 atau 203.0.113.45.
-- Nomor Port: Mengidentidentifikasi aplikasi atau layanan spesifik yang berjalan pada perangkat dengan alamat IP tertentu. Contoh: Port 80 untuk HTTP, Port 22 untuk SSH, Port 8080 untuk aplikasi web kustom.
+- Alamat IP (_Internet Protocol Address_): Mengidentifikasi perangkat (komputer, server, smartphone) dalam jaringan. Contoh: 192.168.1.1 atau 203.0.113.45.
+- Nomor _Port_: Mengidentidentifikasi aplikasi atau layanan spesifik yang berjalan pada perangkat dengan alamat IP tertentu. Contoh: Port 80 untuk HTTP, Port 22 untuk SSH, Port 8080 untuk aplikasi web kustom.
 
 Kombinasi alamat IP dan nomor port (IP Address:Port) dikenal sebagai _socket address_ atau _network address_.
 
@@ -526,8 +646,8 @@ Jadi, ketika Anda ingin menghubungi suatu layanan, Anda perlu tahu Alamat IP (ru
 
 _Socket_ adalah titik akhir (_endpoint_) komunikasi. Dalam Java, sebuah _socket_ adalah objek yang mewakili koneksi antara dua program di jaringan. Jika perangkat adalah rumah, dan alamat IP serta port adalah pintu, maka Socket adalah jendela komunikasi yang kita buka untuk mengirim dan menerima data.
 
-- **Server _Socket_:** Digunakan oleh server untuk mendengarkan koneksi masuk dari klien. Ini adalah jendela yang dibuka oleh "pelayan" (server) untuk mendengarkan apakah ada "pelanggan" (klien) yang ingin masuk dan terhubung. Ketika ada pelanggan yang datang, server akan membuat jendela baru khusus untuk pelanggan itu.
-- **Client _Socket_:** Digunakan oleh klien untuk membuat koneksi ke server. Ini adalah jendela yang dibuka oleh "pelanggan" (klien) untuk menghubungi jendela pelayan (server) dan memulai percakapan.
+- **Server _Socket_:** Digunakan oleh server untuk mendengarkan koneksi masuk dari klien. Ini adalah **jendela** yang dibuka oleh "pelayan" (server) untuk mendengarkan apakah ada "pelanggan" (klien) yang ingin masuk dan terhubung. Ketika ada pelanggan yang datang, server akan membuat jendela baru khusus untuk pelanggan itu.
+- **Client _Socket_:** Digunakan oleh klien untuk membuat koneksi ke server. Ini adalah **jendela** yang dibuka oleh "pelanggan" (klien) untuk menghubungi jendela pelayan (server) dan memulai percakapan.
 
 ---
 
@@ -609,7 +729,7 @@ Kelas ini merepresentasikan paket data yang akan dikirim atau diterima melalui `
 
 ### UDP (User Datagram Protocol) - Kantor Pos
 
-**Bayangkan Anda mengirim surat melalui kantor pos**. Anda menulis surat, menaruhnya di amplop, menulis alamat dan melemparkannya ke kotak surat. Anda tidak tahu pasti kapan atau bahkan apakah surat itu akan sampai, dan Anda tidak akan tahu urutan pengirimannya jika Anda mengirim beberapa surat sekaligus. Ini lebih cepat karena tidak ada proses handshake awal, tetapi kurang andal.
+**Bayangkan Anda mengirim surat melalui kantor pos**. Anda menulis surat, menaruhnya di amplop, menulis alamat dan melemparkannya ke kotak surat. Anda tidak tahu pasti kapan atau bahkan apakah surat itu akan sampai, dan Anda tidak akan tahu urutan pengirimannya jika Anda mengirim beberapa surat sekaligus. Ini lebih cepat karena tidak ada proses _handshake_ awal, tetapi kurang andal.
 
 - **DatagramSocket** adalah kantor pos Anda yang menerima dan mengirimkan surat.
 - **DatagramPacket** adalah surat itu sendiri, berisi pesan dan alamat tujuan.
@@ -643,7 +763,7 @@ Jika kita ingin membuat aplikasi chat yang sangat ringan atau untuk mengirim pes
 
 ---
 
-## Contoh Kode Lengkap
+## Contoh Kode
 
 Berikut adalah contoh kode untuk TCP dan UDP.
 
@@ -716,6 +836,7 @@ public class EchoServer {
 ```
 
 <br>
+
 Buat `EchoClient.java` sebagai Klien TCP.
 
 ```java
@@ -778,12 +899,17 @@ private static final int SERVER_PORT = 12345;
 
 <br>
 
-**Cara Menjalankan:**
+**Cara Menjalankan (1): Manual**
 
 1. Compile kedua file: `javac EchoServer.java EchoClient.java`
 2. Jalankan server terlebih dahulu: `java EchoServer`
 3. Di terminal/CMD terpisah, jalankan klien: `java EchoClient`
 4. Ketik pesan di klien, dan server akan "menggema" kembali pesan tersebut.
+
+**Cara Menjalankan (2): Dengan Intellij IDE**
+
+1. Buka file server, pilih ikon run di sebelah kiri baris `public static void main(String[] args)`.
+2. Buka file client, pilih ikon run di sebelah kiri baris `public static void main(String[] args)`.
 
 <br>
 
@@ -882,12 +1008,17 @@ public class UDPReceiver {
 
 <br>
 
-**Cara Menjalankan:**
+**Cara Menjalankan (1): Manual**
 
 1. Compile kedua file: `javac UDPSender.java UDPReceiver.java`
 2. Jalankan penerima terlebih dahulu: `java UDPReceiver`
 3. Di terminal/CMD terpisah, jalankan pengirim: `java UDPSender`
 4. Ketik pesan di pengirim, dan pesan akan muncul di penerima.
+
+**Cara Menjalankan (2): Dengan Intellij IDE**
+
+1. Buka file sender, pilih ikon run di sebelah kiri baris `public static void main(String[] args)`.
+2. Buka file receiver, pilih ikon run di sebelah kiri baris `public static void main(String[] args)`.
 
 ---
 
