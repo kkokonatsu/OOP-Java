@@ -4,7 +4,7 @@ composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
 ![alt text](5.png)
 
-<!-- [TOC] -->
+[TOC]
 
 ## **Table of Contents**
 
@@ -896,9 +896,5 @@ public class UDPReceiver {
 ```
 
 Have a nice day 👋
-
-```
-
-```
 
 ```
