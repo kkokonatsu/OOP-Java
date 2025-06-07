@@ -6,16 +6,28 @@ composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
 ## **Table of Contents**
 
-<!-- - [Pemrosesan Input/Output](#pemrosesan-io)
-  - [Pendahuluan](#pendahuluan)
-  - [Konsep Dasar I/O](#konsep-dasar-io-dalam-java)
-  - [Class-Class Kunci pada I/O](#class-class-kunci-pada-io)
-  - [Contoh Kode](#contoh-kode)
-- [Pemrograman Jaringan](#pemrograman-jaringan)
-  - [Pendahuluan](#pendahuluan-1)
-  - [Konsep Dasar Networking](#konsep-dasar-pemrograman-jaringan)
-  - [Class-Class Kunci pada Networking](#class-class-kunci-pada-networking)
-  - [Contoh Kode](#contoh-kode-1) -->
+- [Concept of Multithreading](#concept-of-multihtreading)
+  - [What is Multithreading?](#what-is-multithreading)
+  - [Why is Multithreading](#why-is-multithreading)
+  - [Multiprocessing vs Multithreading](#multiprocessing-vs-multithreading)
+  - [When We User Multithreading?](#when-we-used-multihtreading)
+- [How to make a Thread](#how-to-make-a-thread)
+  - [Main Thread](#main-thread)
+  - [Cara 1: Extending Class Thread](#cara-1-extending-class-thread)
+  - [Cara 2: Implementing Interface Runnable as a Class](#cara-2-implementing-interface-runnable-as-a-class)
+  - [Cara 3: Implementasi Interface Runnable dengan Lambda Expression](#cara-3-implementing-interface-runnable-dengan-lambda-expression)
+  - [Ringkasan Perbandingan](#ringkasan-perbandingan)
+  - [Thread Status](#thread-states)
+- [Thread Synchronization](#thread-synchronization)
+  - [Race Condition Problem](#race-condition-problem)
+  - [Concept of Synchronization](#concept-of-synchronization)
+  - [Keyword Synchronized](#keyword-synchronized)
+- [Thread Communication](#threads-communication)
+  - [Studi Kasus](#studi-kasus)
+  - [Contoh Program](#contoh-program)
+- [Advanced Concurrency](#advanced-concurrency)
+  - [Deadlock](#deadlock)
+  - [java.util.concurrent](#javautilconcurrent)
 
 ---
 
