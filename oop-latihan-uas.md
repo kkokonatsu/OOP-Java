@@ -99,10 +99,15 @@ public class SimpleThread extends Thread {
 ```
 
 Manakah pernyataan yang PALING TEPAT mengenai potensi output dari program di atas?
+
 A. Pasti "Thread A is running." diikuti oleh "Thread B is running.".
+
 B. Pasti "Thread B is running." diikuti oleh "Thread A is running.".
+
 **C. Output mungkin bervariasi antara "Thread A is running." dan "Thread B is running." karena eksekusi thread tidak berurutan.**
+
 D. Program akan mengalami error kompilasi karena dua thread dijalankan bersamaan.
+
 E. Program akan mengalami deadlock.
 
 **Jawaban:**
@@ -327,20 +332,30 @@ public class FileChecker {
 ```
 
 Jika file "nonexistent.txt" tidak ada, apa yang akan menjadi output dari program di atas?
+
 A. "Terjadi error I/O."
+
 B. null
+
 C. Program akan berhenti tanpa output karena error.
+
 **D. "File tidak ditemukan."**
+
 E. Pesan kesalahan dari stack trace.
 
 **Jawaban:**
 `FileReader` akan mencoba membuka file "nonexistent.txt". Karena file tidak ada, ini akan melempar `FileNotFoundException`, yang akan ditangkap oleh blok catch (`FileNotFoundException e`), sehingga mencetak "File tidak ditemukan.".
 
 Dalam pemrograman I/O, apa fungsi utama dari InputStreamReader atau OutputStreamWriter?
+
 A. Mengkonversi aliran byte menjadi aliran objek Java.
+
 B. Mengkonversi aliran karakter menjadi aliran byte.
+
 **C. Menjembatani aliran byte dengan aliran karakter, memungkinkan konversi encoding**
+
 D. Menyediakan fungsionalitas buffering untuk meningkatkan performa.
+
 E. Membaca dan menulis data primitif (int, double, dll).
 
 **Jawaban:**
@@ -367,8 +382,11 @@ Setiap buku memiliki data: judul, penulis, dan tahun terbit. Mereka ingin bisa m
 Class I/O apa yang paling tepat digunakan untuk menyimpan dan membaca data buku dalam bentuk objek?
 
 A. BufferedReader dan BufferedWriter
+
 B. FileReader dan FileWriter
+
 **C. ObjectOutputStream dan ObjectInputStream**
+
 D. PrintWriter dan Scanner
 
 <br>
