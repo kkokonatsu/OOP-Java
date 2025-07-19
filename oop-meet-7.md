@@ -1043,14 +1043,14 @@ Kita sudah tahu tentang penggunaan `synchronized` sebagai "gembok" untuk melindu
 
 _Deadlock_ biasanya hanya terjadi jika keempat kondisi berikut terpenuhi secara bersamaan (ini penting, tapi jangan terlalu dalam untuk pemula):
 
-- **Mutual Exclusion:** Sumber daya tidak bisa dibagi. Hanya satu thread yang bisa menggunakannya pada satu waktu (misalnya, satu garpu hanya bisa dipegang satu orang).
+- **Mutual Exclusion:** Sumber daya tidak bisa digunakan bersamaan (hanya satu thread yang bisa pegang kunci pada satu waktu). Ini yang terjadi pada `synchronized` atau `Lock`. Misalnya, ada satu garpu yang hanya bisa dipegang satu orang.
 - **Hold and Wait:** Thread yang memegang satu atau lebih sumber daya sedang menunggu sumber daya tambahan yang dipegang oleh thread lain. (A pegang garpu, menunggu sendok. B pegang sendok, menunggu garpu).
 - **No Preemption:** Sumber daya tidak bisa dipaksa diambil dari thread yang memegangnya. Thread harus melepaskannya secara sukarela.
 - **Circular Wait:** Ada rantai thread, di mana Thread A menunggu sumber daya dari B, B menunggu dari C, dan C menunggu dari A (atau lebih sederhana, A menunggu B, B menunggu A).
 
 ### `java.util.concurrent`
 
-Sejauh ini, kita sudah belajar cara membuat thread manual (`extends Thread` atau `implements Runnable`), mengamankan data dengan `synchronized`, dan berkomunikasi dengan `wait()` atau `notify()`. Metode ini fundamental, tetapi untuk aplikasi yang lebih besar dan kompleks, mengelola banyak thread secara manual bisa jadi rumit dan rawan kesalahan (seperti deadlock).
+Sejauh ini, kita sudah belajar cara membuat thread manual (`extends Thread` atau `implements Runnable`), mengamankan data dengan `synchronized`, dan berkomunikasi dengan `wait()` atau `notify()`. Metode ini fundamental, tetapi untuk aplikasi yang lebih besar dan kompleks, mengelola banyak thread secara manual bisa jadi rumit dan rawan kesalahan (seperti _deadlock_).
 
 Kemudian, Java 5 memperkenalkan package `java.util.concurrent`, yang dirancang untuk mengatasi kompleksitas dan tantangan dari pemrograman multithreading secara manual. Package ini dikembangkan oleh pakar konkurensi dan menyediakan tools (alat) yang lebih canggih, efisien, dan aman. Package ini menyediakan banyak kelas dan framework yang canggih untuk:
 
@@ -1058,23 +1058,195 @@ Kemudian, Java 5 memperkenalkan package `java.util.concurrent`, yang dirancang u
 - **Mengamankan data bersama dengan lebih efisien:** Alternatif untuk `synchronized` yang lebih fleksibel.
 - **Menyediakan koleksi data yang sudah "thread-safe":** Anda tidak perlu khawatir lagi tentang [race condition](#race-condition-problem) saat menggunakan koleksi ini.
 
-Mari kita bahas beberapa tools penting di dalamnya.
+Package ini menyediakan beberapa fitur yang sangat berguna pada pengelolaan thread di Java, yaitu:
+
+1. Executor Framework
+2. Atomic Variables
+3. Locks
+4. Concurrent Collections
+5. Synchronizers
+
+Mari kita bahas beberapa konsep-konsep penting di atas pada section berikut.
 
 <br>
 
-#### Executor Framework (`ExecutorService`, `Executors`)
+#### Executor Framework: Manajer Thread Pintar
 
-Bayangkan Anda punya banyak "tugas" (jobs) yang perlu dikerjakan, tapi Anda tidak ingin repot memanggil tukang (thread) satu per satu, mengawasinya, dan memberhentikannya. Anda ingin sebuah "manajer" yang bisa mengurus semua itu.
+Bayangkan Anda adalah seorang manajer proyek yang punya banyak tugas kecil (misalnya, mengirim email, memproses laporan, atau menghitung data). Awalnya, setiap kali ada tugas baru, Anda harus merekrut seorang pekerja baru, melatihnya sebentar, memberinya tugas, dan setelah selesai, pekerja itu langsung diberhentikan. Ribet, _kan_? Membuat dan menghancurkan pekerja (atau dalam konteks kita, thread) itu memakan waktu dan energi. Ini adalah masalah utama jika kita mengelola thread secara manual di Java.
 
-Executor Framework adalah manajer itu. Ia memisahkan proses pembuatan dan manajemen thread dari tugas yang sebenarnya dijalankan. Anda tinggal memberikan tugas ke Executor, dan dia yang akan mengelola thread-nya.
+Nah, di sinilah _Executor Framework_ datang sebagai "Manajer Thread Pintar" yang lebih canggih. Konsepnya sederhana: daripada pusing mengatur setiap thread sendiri, Anda cukup memberitahu _Executor Framework_ "ini lho tugasnya", dan dia yang akan mengurus detail teknis bagaimana tugas itu dijalankan.
 
 ![pic](https://cs-prod-assets-bucket.s3.ap-south-1.amazonaws.com/Screenshot_2025_03_03_115559_0162aa1192.png)
 
-**Konsep Kunci:**
+Fokus utama dari Executor Framework adalah penggunaan Thread Pool. **Thread Pool adalah sekumpulan thread yang sudah dibuat dan siap digunakan kembali**. Ketika ada tugas baru, alih-alih membuat thread baru, _Executor Framework_ akan mengambil salah satu thread yang tersedia dari pool, memberinya tugas, dan mengembalikan thread tersebut ke pool setelah tugas selesai. Ini sangat meningkatkan efisiensi karena mengurangi biaya pembuatan dan penghancuran thread berulang kali.
+
+Untuk mengelola proses ini, ada beberapa komponen kunci:
 
 - `ExecutorService`: Ini adalah interface utama dari manajer thread. Ia bisa menerima tugas, mengelola kumpulan thread (thread pool), dan bahkan mematikan kumpulan thread tersebut.
-- `Executors`: Ini adalah kelas utilitas yang menyediakan cara mudah untuk membuat berbagai jenis ExecutorService siap pakai (misalnya, untuk kumpulan thread dengan ukuran tetap, atau yang bisa tumbuh sesuai kebutuhan).
-- `Thread Pool`: Ini adalah kumpulan thread yang sudah dibuat dan siap digunakan. Daripada membuat thread baru setiap kali ada tugas, `ExecutorService` akan mengambil thread dari pool ini, memberinya tugas, dan mengembalikannya ke pool setelah selesai. Ini jauh lebih efisien karena menghindari biaya berulang untuk membuat dan menghancurkan thread.
+- `Executors`: Ini adalah kelas utilitas yang menyediakan cara praktis untuk membuat berbagai jenis implementasi `ExecutorService` yang sudah dikonfigurasi. **Anda tidak perlu membuat Thread Pool** dari nol; cukup gunakan metode dari kelas `Executors` untuk mendapatkan manajer yang siap pakai.
+  - `newFixedThreadPool(int nThreads)`: Metode ini menciptakan `ExecutorService` dengan **jumlah thread yang tetap**. Jika semua thread sedang sibuk, tugas-tugas baru akan menunggu dalam antrean sampai ada thread yang bebas. Ini ideal untuk situasi di mana Anda ingin mengontrol secara ketat berapa banyak tugas yang berjalan bersamaan.
+  - `newCachedThreadPool()`: Metode ini menciptakan ExecutorService yang dapat menyesuaikan **jumlah thread-nya secara dinamis**. Jika ada banyak tugas, ia akan membuat thread baru sesuai kebutuhan. Jika ada thread yang menganggur untuk waktu tertentu, ia akan menghentikannya untuk menghemat sumber daya. Ini cocok untuk aplikasi dengan beban kerja yang bervariasi, di mana tugas muncul dan selesai dengan cepat.
+
+**Bagaimana cara menjalankan Tugas?**
+
+Setelah Anda memiliki `ExecutorService`, Anda bisa mulai memberikan tugas melalui dua cara utama, yaitu:
+
+1. Method `execute(Runnable task)` jika ingin tugas yang **tidak mengembalikan hasil** (jalankan dan lupakan). Seperti yang sudah pernah kita coba sebelumnya, cara ini tidak mengembalikan nilai dan tidak bisa melempar checked exception. Ini cocok untuk tugas-tugas yang hanya melakukan sesuatu tanpa perlu memberikan hasil balik.
+2. Method `submit(Callable<V> task)`jika ingin tugas yang **mengembalikan hasil**. Objek `Callable` ini mirip seperti `Runnable`, tapi metode `call()`-nya bisa melempar `exception` dan mengembalikan nilai kembalian. Nah, ketika Anda memilih cara (2) ini, `ExecutorService` akan mengembalikan objek `Future<V>`. Objek `Future` ini bisa diibaratkan sebagai sebuah "janji" untuk melakukan suatu tugas (tidak segera mengembalikan hasil). Objek ini adalah perwakilan dari hasil yang akan datang. Anda bisa menggunakannya untuk:
+   - `get()`: Menunggu dan mengambil hasil (ini adalah operasi _blocking_)
+   - `isDone()`: Memeriksa apakah tugas sudah selesai
+   - `cancel()`: Mencoba membatalkan tugas
+
+**Manajemen Shutdown**
+
+Sama seperti konteks-konteks OOP pada umumnya, sangat penting untuk mematikan `ExecutorService` setelah selesai digunakan. Jika tidak, thread di dalamnya akan terus berjalan dan mencegah aplikasi berhenti.
+
+- `shutdown()`: Menghentikan penerimaan tugas baru dan akan mematikan pool setelah semua tugas yang ada selesai dieksekusi
+- `awaitTermination(long timeout, TimeUnit unit)`: Menunggu hingga semua tugas selesai atau timeout tercapai
+
+<br>
+
+##### Contoh 1: Simulasi unduh banyak gambar
+
+Dalam contoh ini, kita akan membuat beberapa tugas yang masing-masing mensimulasikan proses mengunduh sebuah gambar dari internet. Setiap tugas akan membutuhkan waktu yang bervariasi, dan kita akan menggunakan `ExecutorService` untuk menjalankannya secara bersamaan, kemudian mengumpulkan pesan status hasil pengunduhan.
+
+Buat class `ImageDownloadTask.java`
+
+```java
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
+
+// ImageDownloadTask adalah tugas yang akan dijalankan secara asinkron
+// Ia akan mengembalikan String yang berisi status pengunduhan
+public class ImageDownloadTask implements Callable<String> {
+    private String imageName;
+    private int downloadTime;
+
+    // Konstruktor untuk membuat tugas dengan nama gambar dan waktu unduh
+    public ImageDownloadTask(String imageName, int downloadTime) {
+        this.imageName = imageName;
+        this.downloadTime = downloadTime;
+    }
+
+    @Override
+    public String call() throws Exception {
+        // Mendapatkan nama thread yang sedang menjalankan tugas ini
+        String currentThreadName = Thread.currentThread().getName();
+        System.out.println(currentThreadName + ": Memulai unduhan '" + imageName + "'...");
+
+        try {
+            // Simulasi proses pengunduhan dengan tidur (delay) selama downloadTime
+            TimeUnit.SECONDS.sleep(downloadTime);
+        } catch (InterruptedException e) {
+            // Jika thread diinterupsi saat tidur, laporkan dan lemparkan kembali pengecualian
+            System.out.println(currentThreadName + ": Unduhan '" + imageName + "' dibatalkan.");
+            Thread.currentThread().interrupt(); // Pertahankan status interupsi
+            return "Gagal mengunduh " + imageName + ": Diinterupsi";
+        }
+
+        System.out.println(currentThreadName + ": Selesai mengunduh '" + imageName + "'.");
+        return "Berhasil mengunduh " + imageName; // Mengembalikan pesan keberhasilan
+    }
+}
+```
+
+**Penjelasan:**
+
+- `imageName` dan `downloadTime` merupakan atribut untuk menyimpan nama gambar dan berapa lama simulasi unduhan akan berjalan.
+- Method `call()` merupakan inti dari tugas, yaitu:
+
+  - Mencetak pesan awal tentang dimulainya unduhan oleh thread tertentu.
+  - `TimeUnit.SECONDS.sleep(downloadTime)`: Ini adalah bagian yang seolah-olah melakukan "pekerjaan berat" atau waktu yang dibutuhkan untuk mengunduh gambar. Thread akan "tidur" (berhenti sementara) selama durasi yang ditentukan.
+  - Setelah simulasi unduhan selesai, ia mencetak pesan bahwa unduhan selesai dan mengembalikan `String` yang menunjukkan keberhasilan.
+
+<br>
+
+Kemudian, sesuaikan `Main.java`
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // 1. Membuat ExecutorService (Manajer Thread)
+        // Kita akan menggunakan Fixed Thread Pool dengan 3 thread.
+        // Artinya, maksimal 3 unduhan bisa berjalan bersamaan.
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+        List<Future<String>> downloadFutures = new ArrayList<>();
+
+        System.out.println("Manajer: Memulai proses unduhan gambar...");
+
+        // 2. Menyiapkan dan Mengirimkan Tugas Pengunduhan
+        // Kita akan mengunduh beberapa gambar dengan waktu yang bervariasi.
+        String[] imagesToDownload = {"gambar-a.jpg", "gambar-b.png", "gambar-c.gif", "gambar-d.jpeg", "gambar-e.bmp"};
+        int[] downloadDurations = {3, 5, 2, 4, 6}; // Durasi dalam detik
+
+        for (int i = 0; i < imagesToDownload.length; i++) {
+            ImageDownloadTask task = new ImageDownloadTask(imagesToDownload[i], downloadDurations[i]);
+            // submit() tugas ke executor, dan kita mendapatkan objek Future
+            Future<String> future = executor.submit(task);
+            downloadFutures.add(future); // Simpan Future untuk diambil hasilnya nanti
+        }
+
+        // 3. Mengumpulkan Hasil Unduhan
+        System.out.println("\nManajer: Menunggu hasil unduhan dari setiap gambar...");
+        for (int i = 0; i < downloadFutures.size(); i++) {
+            Future<String> future = downloadFutures.get(i);
+            String imageName = imagesToDownload[i]; // Ambil nama gambar yang sesuai
+
+            try {
+                // future.get() akan memblokir (menunggu) sampai unduhan selesai
+                String downloadStatus = future.get();
+                System.out.println("Status Unduhan untuk '" + imageName + "': " + downloadStatus);
+            } catch (InterruptedException | ExecutionException e) {
+                // Menangani jika ada interupsi atau kesalahan saat eksekusi tugas
+                System.err.println("Gagal mendapatkan status unduhan untuk '" + imageName + "': " + e.getMessage());
+            }
+        }
+
+        // 4. Mengelola Penutupan ExecutorService
+        // Ini sangat penting agar semua thread di pool dimatikan dengan benar.
+        executor.shutdown(); // Mencegah tugas baru diterima
+
+        try {
+            // Menunggu semua tugas yang sedang berjalan selesai, maksimal 30 detik
+            System.out.println("\nManajer: Menunggu ExecutorService berhenti...");
+            if (!executor.awaitTermination(30, TimeUnit.SECONDS)) {
+                // Jika 30 detik sudah berlalu dan masih ada tugas yang belum selesai, paksa shutdown
+                executor.shutdownNow();
+                System.out.println("Manajer: ExecutorService tidak berhenti tepat waktu, memaksa pematian.");
+            }
+        } catch (InterruptedException e) {
+            // Jika main thread diinterupsi saat menunggu, paksa shutdown juga
+            executor.shutdownNow();
+            Thread.currentThread().interrupt(); // Pertahankan status interupsi
+            System.out.println("Manajer: Proses pematian diinterupsi.");
+        }
+
+        System.out.println("\nManajer: Semua unduhan diproses dan ExecutorService dimatikan.");
+    }
+}
+```
+
+**Penjelasan:**
+
+1. `ExecutorService executor = Executors.newFixedThreadPool(3)`: Kita membuat "manajer thread" yang memiliki _pool_ dengan 3 thread tetap. Ini berarti, pada satu waktu, hanya 3 tugas pengunduhan yang bisa berjalan secara paralel.
+2. List`<Future<String>> downloadFutures = new ArrayList<>()`: Kita membuat daftar untuk menyimpan semua "janji" (`Future`) yang akan kita dapatkan setelah mengirimkan tugas.
+3. `executor.submit(task)`: Untuk setiap gambar yang ingin diunduh, kita membuat objek `ImageDownloadTask` dan mengirimkannya ke executor. executor akan segera mengembalikan Future<String>, yang kita simpan di daftar `downloadFutures`.
+4. `future.get()`: Loop ini berjalan melalui setiap `Future` yang kita simpan. Ketika `get()` dipanggil, program utama akan "menunggu" sampai tugas pengunduhan yang diwakili oleh `Future` tersebut selesai dan hasilnya (`String` status unduhan) tersedia.
+5. `executor.shutdown()`: Setelah semua tugas dikirim dan hasilnya dikumpulkan, kita memberi tahu executor untuk berhenti menerima tugas baru.
+6. `executor.awaitTermination(30, TimeUnit.SECONDS)`: Ini adalah langkah penting untuk memastikan executor punya waktu untuk menyelesaikan semua tugas yang sudah dia terima sebelum program utama berakhir. Jika lebih dari 30 detik, kita akan "memaksa" pematian (`shutdownNow()`).
+
+<br>
+
+ScheduledExecutorService: Menjalankan tugas terjadwal atau berulang
 
 ---
 
