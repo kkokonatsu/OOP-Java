@@ -26,6 +26,8 @@ composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
 ---
 
+<br>
+
 ## Java at First Glance!👋
 
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmSmJgXu6kW8ONXMTLq0LD6BJGFV3Hoc0DRg&s)
@@ -84,6 +86,8 @@ Gambar berikut menjelaskan bagaimana **_Java_** bekerja, dari proses menulis kod
   (10-11) JVM menerjemahkannya agar bisa berjalan di sebuah Sistem Operasi apapun (Windows, Mac, Linux), hingga akhirnya menampilkan hasil tulisan "Hello World" di layar komputermu!
 
 ---
+
+<br>
 
 ## Getting Started
 
@@ -146,6 +150,8 @@ public class HelloWorld {
 
 ---
 
+<br>
+
 ## Fundamental OOP
 
 Pemrograman Berorientasi Objek (_Object-Oriented Programming_ atau OOP) adalah paradigma pemrograman yang memetakan seluruh perilaku/komponen program sebagai sebuah _object_. Dalam OOP, program dibangun dengan menulis cetakan objek yang akan disebut sebagai _Class_ dan _object_ riil-nya .
@@ -167,7 +173,7 @@ Terlihat bahwa OOP merupakan paradigma pemrograman yang **meniru cara dunia nyat
 
 Pemecahan tersebut secara tidak langsung mengimplementasikan Prinsip DRY (_Don't Repeat Yourself_) untuk mencegah penulisan kode berulang. Kode yang sama cukup diekstrak ke dalam satu tempat (Class), lalu di-_reuse_ berkali-kali.
 
-**Contoh Perbandingan Kode:**
+**Contoh Perbandingan Kode**
 
 Perhatikan kode Prosedural (Tanpa OOP) berikut, variabel (data) dan fungsi saling terpisah. Fungsi harus menerima data secara manual setiap kali dipanggil.
 
@@ -517,6 +523,8 @@ System.gc();
 ```
 
 ---
+
+<br>
 
 ## Four Pillars of OOP
 
