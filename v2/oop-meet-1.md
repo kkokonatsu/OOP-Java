@@ -8,7 +8,6 @@ composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
 - [Java at First Glance!👋](#java-at-first-glance)
   - [Java Architecture](#java-architecture)
-    - [Analogi Arsitektur Java 🎭](#analogi-arsitektur-java-)
   - [How _Java_ Works?](#how-java-works)
 - [Getting Started](#getting-started)
   - [Langkah 1: Instalasi](#langkah-1-instalasi)
