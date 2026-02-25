@@ -198,7 +198,7 @@ public class ProceduralMobil {
 }
 ```
 
-🚨 **Masalahnya:** Bayangkan jika kita memiliki 100 mobil. Kita harus mendeklarasikan 200 variabel terpisah secara manual (merkMobil3, kecepatanMobil3, dst) dan mengoper datanya satu per satu ke dalam fungsi gas(). Kode akan menjadi sangat panjang, berantakan, dan sulit dikelola (sangat melanggar prinsip DRY).
+🚨 **Masalahnya:** Bayangkan jika kita memiliki 100 mobil. Kita harus mendeklarasikan 200 variabel terpisah secara manual (`merkMobil3`, `kecepatanMobil3`, dst) dan mengoper datanya satu per satu ke dalam fungsi `gas()`. Kode akan menjadi sangat panjang, berantakan, dan sulit dikelola (sangat melanggar prinsip DRY).
 
 Lalu, perhatikan kode OOP berikut, kita menyatukan data dan fungsi ke dalam sebuah "cetakan" bernama Class.
 
@@ -229,7 +229,7 @@ public class MainOOP {
 }
 ```
 
-✅ **Solusinya:** Data (merk, kecepatan) dan perilaku (gas) sudah dibungkus rapi di dalam Class MobilOOP. Jika kita butuh 100 mobil, kita tidak perlu membuat variabel terpisah satu-satu. Kita cukup mencetaknya dengan memanggil perintah new MobilOOP(...) sebanyak 100 kali. Tidak ada lagi variabel dan fungsi yang berserakan. Kodenya menjadi jauh lebih ringkas, terstruktur, dan elegan!
+✅ **Solusinya:** Data (`merk`, `kecepatan`) dan perilaku (`gas`) sudah dibungkus rapi di dalam Class `MobilOOP`. Jika kita butuh 100 mobil, kita tidak perlu membuat variabel terpisah satu-satu. Kita cukup mencetaknya dengan memanggil perintah `new MobilOOP(...)` sebanyak 100 kali. Tidak ada lagi variabel dan fungsi yang berserakan. Kodenya menjadi jauh lebih ringkas, terstruktur, dan elegan!
 
 Pendekatan ini membuat aplikasi lebih cepat dibangun, sangat mudah dimodifikasi, dan gampang di-_debug_. Dalam konsep OOP terdapat beberapa komponen yang perlu diketahui: _Class_, 8, _Attribute_, _Method_, dan _Constructor_.
 
@@ -537,6 +537,8 @@ Konsep dari OOP ditopang oleh 4 ide utama:
 - **Polymorphism**: Kemampuan satu entitas untuk memiliki banyak bentuk tindakan. (Meet 2)
 - **Abstraction**: Menyembunyikan kompleksitas sistem di balik antarmuka yang sederhana. (Meet 2)
 
+<br>
+
 ### Encapsulation: Membatasi Akses Objek
 
 Encapsulation adalah konsep OOP untuk menyembunyikan atribut dari akses langsung dan hanya dapat diakses melalui method khusus (_getter_ dan _setter_). Dengan konsep ini, kita bisa mengontrol bagaimana data suatu objek bisa diakses dan diubah.
@@ -544,6 +546,8 @@ Encapsulation adalah konsep OOP untuk menyembunyikan atribut dari akses langsung
 Bayangkan sebuah mobil yang memiliki berbagai komponen, seperti mesin, rem, dan roda. Sebagai pengemudi, kita tidak bisa langsung mengakses mesin secara langsung saat berkendara. Kita hanya bisa mengontrol mobil melalui pedal gas, rem, dan setir tanpa perlu mengatur bagaimana mesin bekerja secara internal.
 
 Hal tersebut menunjukkan terdapat fitur-fitur dari mobil yang disembunyikan dari pengemudi. Apabila kita ingin mengubah pengaturan mesin maka kita perlu montir (_getter_ dan _setter_). Ide tersebut memastikan bahwa mobil tetap aman dan tidak rusak karena salah penggunaan.
+
+<br>
 
 **❌ Contoh Tanpa Encapsulation (Data Tidak Aman)**
 
@@ -659,6 +663,8 @@ class Mobil {
 }
 ```
 
+<br>
+
 Apabila dicoba diakses di `Main.java`, akan seperti berikut:
 
 ```java
@@ -692,6 +698,8 @@ Dengan menerapkan encapsulation, maka:
 - Jika ada perubahan aturan kecepatan, hanya method terkait di dalam Class `Mobil` yang perlu diperbarui.
 
 > **_Aturan Emas:_** Jadi, mulai sekarang ketika Anda membuat class, jadikan kebiasaan untuk selalu mengatur atribut menjadi `private` serta membuat _getter_ dan _setter_ sebagai jalur interaksinya.
+
+<br>
 
 # The End
 
