@@ -584,12 +584,12 @@ public class Main {
 
 Untuk mengatasi masalah di atas, kita butuh sebuah "gembok" yang kita sebut sebagai _access modifier_. Di Java, terdapat 4 jenis kata kunci _access modifier_:
 
-| Modifier    | Akses di Class Sendiri | Akses di Package Sama | Akses Subclass | Akses Global (Bebas) |
-| ----------- | ---------------------- | --------------------- | -------------- | -------------------- |
-| `public`    | ✅                     | ✅                    | ✅             | ✅                   |
-| `protected` | ✅                     | ✅                    | ✅             | ❌                   |
-| (default)   | ✅                     | ✅                    | ❌             | ❌                   |
-| `private`   | ✅                     | ❌                    | ❌             | ❌                   |
+| Modifier              | Akses di Class Sendiri | Akses di Package Sama | Akses Subclass | Akses Global (Bebas) |
+| --------------------- | ---------------------- | --------------------- | -------------- | -------------------- |
+| `public`              | ✅                     | ✅                    | ✅             | ✅                   |
+| `protected`           | ✅                     | ✅                    | ✅             | ❌                   |
+| (default/no modifier) | ✅                     | ✅                    | ❌             | ❌                   |
+| `private`             | ✅                     | ❌                    | ❌             | ❌                   |
 
 Nah, pada pilar Encapsulation ini, kita wajib memanfaatkan _access modifier_ `private` untuk mengamankan atribut-atribut pada suatu class agar tidak bisa ditembus langsung dari luar.
 
