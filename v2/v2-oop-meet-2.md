@@ -2,25 +2,38 @@
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
-![alt text](2.png)
+![alt text](../assets/2.png)
 
 <!-- [TOC] -->
 
 ## **Table of Contents**
 
+## **Table of Contents**
+
+- [Review Pertemuan Sebelumnya 🔄](#review-pertemuan-sebelumnya-)
 - [Four Pillars of OOP (Continue)](#four-pillars-of-oop-continue)
-  - [Concept of Abstraction](#concept-of-abstraction)
-  - [Abstract](#abstract)
-  - [Interface](#interface)
-  - [abstract vs interface](#abstract-vs-interface)
+  - [Skenario “Perusahaan Transportasi”](#skenario-perusahaan-transportasi)
+  - [Inheritance: Mewarisi Sifat Induk](#inheritance-mewarisi-sifat-induk)
+  - [Polymorphism: "Satu Perintah, Banyak Perilaku"](#polymorphism-satu-perintah-banyak-perilaku)
+  - [Abstraction: Menyembunyikan Detail Rumit](#abstraction-menyembunyikan-detail-rumit)
+- [Class Diagram](#class-diagram)
+  - [Anatomi Class Diagram](#anatomi-class-diagram)
+  - [Simbol Access Modifier](#simbol-access-modifier)
+  - [Format Penulisan](#format-penulisan)
+  - [Hubungan Antar Objek (Relasi)](#hubungan-antar-objek-relasi)
+    - [1. Association - "Hubungan Interaksi Bebas"](#1-association---hubungan-interaksi-bebas)
+    - [2. Aggregation - "Hubungan Kepemilikan / Longgar"](#2-aggregation---hubungan-kepemilikan--longgar)
+    - [3. Composition - "Hubungan Sehidup Semati / Kuat"](#3-composition---hubungan-sehidup-semati--kuat)
+- [Exception Handling: Sabuk Pengaman Program](#exception-handling-sabuk-pengaman-program)
+  - [Struktur Exception Handling](#struktur-exception-handling)
+  - [Contoh Kasus: Menghitung Efisiensi Bahan Bakar](#contoh-kasus-menghitung-efisiensi-bahan-bakar)
+  - [Throwing Exception](#throwing-exception)
 - [Generic Type](#generic-type)
-  - [Without Generic Type](#without-generic-type)
-  - [With Generic Type](#with-generic-type)
+  - [Tanpa Generic Type](#tanpa-generic-type)
+  - [Dengan Generic Type](#dengan-generic-type)
   - [Multiple Type Parameter](#multiple-type-parameter)
   - [Generic Method](#generic-method)
   - [Type Parameter Conventions](#type-parameter-conventions)
-- [Exception Handling](#exception-handling)
-  - [Throwing Exception](#throwing-exception)
 
 ---
 
