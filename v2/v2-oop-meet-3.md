@@ -80,8 +80,7 @@ Untuk mencegah kode menjadi "benang kusut", Robert C. Martin (Uncle Bob) mengena
 
 ## Single Responsibility Principle
 
-> <br> **_Satu class = satu tanggung jawab._**
-> <br>
+> <br> **_Satu class = satu tanggung jawab._**<br><br>
 
 **❌ Salah (Melanggar SRP)**
 
@@ -141,8 +140,7 @@ Sekarang:
 
 ## Open/Closed Principle (OCP)
 
-> <br> **_Terbuka untuk dikembangkan, tertutup untuk dimodifikasi._**
-> <br>
+> <br> **_Terbuka untuk dikembangkan, tertutup untuk dimodifikasi._** <br><br>
 
 Misalnya sistem pembayaran.
 
@@ -216,8 +214,7 @@ class QRISPayment implements PaymentMethod {
 
 ## Liskov Substitution Principle (LSP)
 
-> <br> **_Subclass harus bisa menggantikan superclass tanpa merusak sistem._**
-> <br>
+> <br> **_Subclass harus bisa menggantikan superclass tanpa merusak sistem._** <br><br>
 
 **❌ Contoh Salah**
 
@@ -338,8 +335,7 @@ Kunci dari LSP adalah jangan membuat janji di Interface yang tidak bisa ditepati
 
 ## Interface Segregation Principle (ISP)
 
-> <br> **_Jangan paksa class mengimplementasikan method yang tidak dipakai._**
-> <br>
+> <br> **_Jangan paksa class mengimplementasikan method yang tidak dipakai._** <br><br>
 
 **❌ Salah**
 
@@ -395,8 +391,7 @@ class Mobil implements FiturDasar, FiturAC {
 
 ## Dependency Inversion Principle (DIP)
 
-> <br> **_Bergantung pada abstraksi, bukan implementasi konkret._**
-> <br>
+> <br> **_Bergantung pada abstraksi, bukan implementasi konkret._** <br><br>
 
 **❌ Salah**
 
