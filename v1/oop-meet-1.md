@@ -2,7 +2,7 @@
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
-![alt text](1.png)
+![alt text](../assets/1.png)
 
 <!-- [TOC] -->
 

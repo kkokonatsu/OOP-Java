@@ -2,7 +2,7 @@
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
-![alt text](7.png)
+![alt text](../assets/7.png)
 
 ## **Table of Contents**
 
@@ -1154,7 +1154,6 @@ public class ImageDownloadTask implements Callable<String> {
 
 - `imageName` dan `downloadTime` merupakan atribut untuk menyimpan nama gambar dan berapa lama simulasi unduhan akan berjalan.
 - Method `call()` merupakan inti dari tugas, yaitu:
-
   - Mencetak pesan awal tentang dimulainya unduhan oleh thread tertentu.
   - `TimeUnit.SECONDS.sleep(downloadTime)`: Ini adalah bagian yang seolah-olah melakukan "pekerjaan berat" atau waktu yang dibutuhkan untuk mengunduh gambar. Thread akan "tidur" (berhenti sementara) selama durasi yang ditentukan.
   - Setelah simulasi unduhan selesai, ia mencetak pesan bahwa unduhan selesai dan mengembalikan `String` yang menunjukkan keberhasilan.

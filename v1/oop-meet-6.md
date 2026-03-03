@@ -2,7 +2,7 @@
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
-![alt text](5.png)
+![alt text](../assets/5.png)
 
 ## **Table of Contents**
 
@@ -251,7 +251,6 @@ Bayangkan program Java Anda adalah seorang koki di dapur.
 - **Input Stream:** Anggap ini seperti Anda membaca resep dari sebuah buku resep (file input) atau mendengarkan instruksi dari seseorang (keyboard input). Anda mendapatkan bahan-bahan atau langkah-langkah satu per satu.
 - **Output Stream:** Ini seperti Anda menulis resep baru ke dalam buku resep Anda (file output) atau mengatakan instruksi kepada asisten Anda (konsol output). Anda memberikan informasi.
 - **Byte Stream vs. Character Stream:**
-
   - Jika Anda membaca resep dalam bentuk gambar (misalnya, dari buku resep kuno yang difoto), itu seperti byte stream karena Anda membaca piksel-piksel biner.
   - Jika Anda membaca resep yang ditulis dalam teks biasa, itu seperti character stream karena Anda membaca huruf demi huruf atau kata demi kata.
 
@@ -263,7 +262,6 @@ Bayangkan program Java Anda adalah seorang koki di dapur.
 Bayangkan Anda sedang membangun aplikasi catatan sederhana.
 
 - Menulis Catatan ke File (_Output_):
-
   - Pengguna mengetik catatannya di antarmuka pengguna.
   - Anda akan menggunakan FileWriter atau BufferedWriter (dibungkus FileWriter) untuk menulis teks catatan tersebut ke sebuah file .txt.
   - Jika Anda ingin menyimpan juga tanggal dan waktu catatan dibuat dalam format biner, Anda bisa menggunakan DataOutputStream.
@@ -605,7 +603,6 @@ Agar klien dan server dapat berkomunikasi, mereka harus berbicara dalam "bahasa"
 ![alt](https://media.geeksforgeeks.org/wp-content/uploads/20230406112559/TCP-3.png)
 
 - **TCP** (_Transmission Control Protocol_): Protokol berorientasi koneksi yang **menjamin pengiriman data yang andal, berurutan, dan bebas kesalahan**.Seperti menelepon teman. Sebelum bicara, Anda harus men-_dial_ nomor dan memastikan teman Anda mengangkat telepon (proses _handshake_ atau membangun koneksi). Setelah tersambung, percakapan Anda terjamin sampai, berurutan, dan jika ada yang terlewat, Anda bisa meminta diulang. Jika telepon mati, Anda harus mendial lagi. Cocok untuk aplikasi yang memerlukan keandalan tinggi seperti transfer file, web Browse, atau email.
-
   - **Kapan dipakai?** Untuk komunikasi yang sangat penting dan harus sampai dengan utuh, seperti:
     - Mengirim email
     - Membuka halaman web
@@ -616,7 +613,6 @@ Agar klien dan server dapat berkomunikasi, mereka harus berbicara dalam "bahasa"
 <br>
 
 - **UDP** (_User Datagram Protocol_): Protokol tanpa koneksi yang lebih **cepat tetapi tidak menjamin pengiriman data atau urutan data**. Seperti mengirim surat kilat. Anda menulis surat, masukkan ke amplop, dan langsung kirim. Anda tidak perlu memastikan apakah surat itu sampai, atau apakah sampai dalam urutan yang benar jika Anda kirim banyak surat. Mungkin saja suratnya hilang di jalan atau datang duluan yang terakhir Anda kirim. Cocok untuk aplikasi yang sensitif terhadap waktu dan dapat mentolerir kehilangan data, seperti streaming video/audio atau game online real-time.
-
   - **Kapan dipakai?** Untuk komunikasi yang butuh kecepatan tinggi dan sedikit kehilangan data tidak masalah, seperti:
     - Streaming video/musik (lag sedikit tidak terlalu fatal)
     - Game online real-time (Anda lebih peduli kecepatan daripada setiap paket data sampai)

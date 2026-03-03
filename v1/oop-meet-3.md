@@ -2,7 +2,7 @@
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
-![alt text](3.png)
+![alt text](../assets/3.png)
 
 <!-- [TOC] -->
 
@@ -53,7 +53,7 @@ _Design pattern_ dibagi menjadi tiga kategori utama: Creational, Structural, dan
 
 ## Creational Patterns
 
-![alt text](assets/creational.webp)
+![alt text](../assets/creational.webp)
 
 _Creational patterns_ berfokus pada cara membuat objek dalam program. Tujuan utamanya adalah untuk memisahkan logika pembuatan objek dari kode yang menggunakan objek tersebut, sehingga membuat kode lebih fleksibel dan mudah dimodifikasi.
 
@@ -501,7 +501,7 @@ public class PrototypePatternDemo {
 
 ## Structural Patterns
 
-![alt text](assets/structural.webp)
+![alt text](../assets/structural.webp)
 
 _Structural patterns_ berfokus pada cara objek disusun atau dihubungkan bersama untuk membentuk struktur yang lebih besar. Tujuannya adalah untuk membuat hubungan antar objek lebih mudah dikelola dan lebih efisien.
 
@@ -1084,7 +1084,7 @@ Metode endDayRoutine() memanggil metode untuk mematikan perangkat, memberikan an
 
 ## Behavioral Patterns
 
-![alt text](assets/behavioral.webp)
+![alt text](../assets/behavioral.webp)
 
 _Behavioral patterns_ berfokus pada komunikasi atau interaksi antara objek. Pola ini membantu mendefinisikan bagaimana objek berinteraksi, memecah masalah komunikasi yang kompleks, dan menghindari ketergantungan langsung antar objek.
 
