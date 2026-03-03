@@ -8,9 +8,7 @@ composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
 ## **Table of Contents**
 
-## **Table of Contents**
-
-- [Review Pertemuan Sebelumnya 🔄](#review-pertemuan-sebelumnya-)
+- [Review](#review-pertemuan-sebelumnya-)
 - [Four Pillars of OOP (Continue)](#four-pillars-of-oop-continue)
   - [Skenario “Perusahaan Transportasi”](#skenario-perusahaan-transportasi)
   - [Inheritance: Mewarisi Sifat Induk](#inheritance-mewarisi-sifat-induk)
