@@ -1,4 +1,4 @@
-# OOP: Chapter 2
+# OOP Chapter 2: OOP Pillars, UML, Exception Handling
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 

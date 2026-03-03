@@ -1,8 +1,8 @@
-# OOP: Chapter 3
+# OOP Chapter 3: Designing OOP
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
-![alt text](3.png)
+![alt text](../assets/3.png)
 
 <!-- [TOC] -->
 
