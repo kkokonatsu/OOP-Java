@@ -1,4 +1,4 @@
-# OOP: Chapter 4
+# OOP Chapter 4: OOP Project Next Step
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
@@ -51,7 +51,9 @@ Maka dari itu, kita bakal mencoba bahas GUI terlebih dahulu.
 
 ## Graphical User Interface (GUI)
 
-GUI (_Graphical User Interface_) itu kayak baju keren buat program. Daripada cuma _text_ di console (ex: System.out.println()) doang, sekarang program kita bisa punya _window_, tombol, gambar, terus _user_ bisa klik, ketik, _drag_, dan masih banyak lagi.
+**💥 Masalah:** Aplikasi terminal (_Console_) yang menggunakan System.out.println sangat membosankan dan tidak ramah untuk orang awam. Bayangkan kasir minimarket atau admin perusahaan harus mengetik perintah teks setiap kali mau menginput data. Sangat tidak efisien!
+
+GUI (_Graphical User Interface_) itu kayak baju keren buat program. Daripada cuma _text_ di _console_ (ex: System.out.println()) doang, sekarang program kita bisa punya _window_, tombol, gambar, terus _user_ bisa klik, ketik, _drag_, dan masih banyak lagi.
 
 Simple-nya: Dari "terminal hitam-hitam" bisa jadi "aplikasi yang bisa diklik-klik (interaktif)".
 
@@ -59,7 +61,7 @@ Simple-nya: Dari "terminal hitam-hitam" bisa jadi "aplikasi yang bisa diklik-kli
 
 Selama ini kita hanya belajar tentang fundamental dari Java yang mana hanya mengandalkan data dari user baik di-_hardcode_ ataupun di-_input_-kan. Cara tersebut memiliki banyak kekurangan seperti tidak tercatatnya data dalam waktu yang lama dan juga akan semakin kompleks ketika data semakin besar. Maka dari itu, sekarang kita akan mulai untuk mengikutsertakan koneksi _database_ ke dalam program kita. Materi ini bakal mengenalkan kita dengan _Java Database Connectivity_ (JDBC) sebagai konektor antara program dan database.
 
-# Membangun Aplikasi GUI di Swing
+# Membangun Aplikasi GUI di Java Swing
 
 Kali ini kita akan membuat program berupa form untuk mengisikan data mahasiswa dengan struktur pyoject sebagai berikut.
 

@@ -1,4 +1,4 @@
-# OOP Chapter 3: Designing OOP
+# OOP Chapter 3: Designing OOP Project
 
 composed by [_Bimo Ade Budiman Fikri_](https://www.linkedin.com/in/bimoadee/)
 
