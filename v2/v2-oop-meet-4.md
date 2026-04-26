@@ -82,7 +82,6 @@ Nah, sebuah aplikasi Java GUI itu terdiri dari **Frame/Container** dan **Control
 | `JFrame`      | Jendela utama dengan title bar, minimize, close, maximize          |
 | `JPanel`      | Panel biasa untuk mengelompokkan komponen, kayak sekat dalam rumah |
 | `JWindow`     | Window polos tanpa title bar, kayak popup sederhana                |
-| `JWindow`     | Jendela tanpa title bar (popup polos)                              |
 | `JSplitPane`  | Membagi dua panel, bisa digeser ukurannya                          |
 | `JTabbedPane` | Panel dengan tab seperti browser                                   |
 
