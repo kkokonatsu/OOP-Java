@@ -428,10 +428,22 @@ Mengapa kode di atas akan menyebabkan Compile Error di Java?
 
 Dalam Class Diagram UML, terdapat sebuah class Garasi dan class Mobil. Relasi antara keduanya digambarkan dengan sebuah garis yang ujungnya memiliki belah ketupat yang diarsir penuh (Solid Diamond) menempel pada sisi Garasi. Manakah dari implementasi kode Java berikut yang paling tepat menerjemahkan diagram tersebut?
 
-- A. `class Garasi extends Mobil { ... }`
-- B. `class Garasi { public void parkir(Mobil m) { ... } }`
-- **C. `class Garasi { private Mobil mobilMilikGarasi; public Garasi() { this.mobilMilikGarasi = new Mobil(); } }`**
-- D. `class Garasi { private Mobil mobil; public Garasi(Mobil m) { this.mobil = m; } }`
+- A. ```class Garasi extends Mobil { ... }```
+- B. ```class Garasi {
+        public void parkir(Mobil m) { ... }
+      }```
+- **C. ```class Garasi {
+              private Mobil mobilMilikGarasi;
+              public Garasi() {
+                  this.mobilMilikGarasi = new Mobil();
+              }
+          }```**
+- D. ```class Garasi {
+              private Mobil mobil;
+              public Garasi(Mobil m) {
+                  this.mobil = m;
+              }
+          }```
 - E. `class Garasi implements Mobil { ... }`
 
 ### 26. (Jebakan JDBC PreparedStatement)
