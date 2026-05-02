@@ -922,38 +922,38 @@ Tuliskan blok kode di dalam ActionListener pada tombol Simpan, yang mengambil da
 
 ```mermaid
 classDiagram
-    class LayananRental {
-        <<interface>>
-        +getBiaya() double
-    }
-
-    class KendaraanDasar {
-        -harga: double
-        +getBiaya() double
-    }
-
-    class RentalDecorator {
+    class KendaraanRental {
         <<abstract>>
-        #layanan: LayananRental
-        +RentalDecorator(LayananRental)
+        +String deskripsi
+        +getDeskripsi() String
+        +getBiaya() double*
+    }
+
+    class MobilStandar {
         +getBiaya() double
+    }
+
+    class FiturTambahanDecorator {
+        <<abstract>>
+        #KendaraanRental kendaraan
+        +getDeskripsi() String*
     }
 
     class PakaiSupir {
-        +PakaiSupir(LayananRental)
+        +getDeskripsi() String
         +getBiaya() double
     }
 
     class PakaiAsuransi {
-        +PakaiAsuransi(LayananRental)
+        +getDeskripsi() String
         +getBiaya() double
     }
 
-    LayananRental <|-- KendaraanDasar
-    LayananRental <|-- RentalDecorator
-    RentalDecorator "1" o-- "1" LayananRental
-    RentalDecorator <|-- PakaiSupir
-    RentalDecorator <|-- PakaiAsuransi
+    KendaraanRental <|-- MobilStandar : Inheritance
+    KendaraanRental <|-- FiturTambahanDecorator : Inheritance
+    FiturTambahanDecorator o-- KendaraanRental : Aggregation (Wraps)
+    FiturTambahanDecorator <|-- PakaiSupir : Inheritance
+    FiturTambahanDecorator <|-- PakaiAsuransi : Inheritance
 ```
 
 **Penjelasan Relasi:**
