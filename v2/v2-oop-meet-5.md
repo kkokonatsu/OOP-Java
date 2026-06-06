@@ -428,10 +428,22 @@ Mengapa kode di atas akan menyebabkan Compile Error di Java?
 
 Dalam Class Diagram UML, terdapat sebuah class Garasi dan class Mobil. Relasi antara keduanya digambarkan dengan sebuah garis yang ujungnya memiliki belah ketupat yang diarsir penuh (Solid Diamond) menempel pada sisi Garasi. Manakah dari implementasi kode Java berikut yang paling tepat menerjemahkan diagram tersebut?
 
-- A. `class Garasi extends Mobil { ... }`
-- B. `class Garasi { public void parkir(Mobil m) { ... } }`
-- **C. `class Garasi { private Mobil mobilMilikGarasi; public Garasi() { this.mobilMilikGarasi = new Mobil(); } }`**
-- D. `class Garasi { private Mobil mobil; public Garasi(Mobil m) { this.mobil = m; } }`
+- A. ```class Garasi extends Mobil { ... }```
+- B. ```class Garasi {
+        public void parkir(Mobil m) { ... }
+      }```
+- **C. ```class Garasi {
+              private Mobil mobilMilikGarasi;
+              public Garasi() {
+                  this.mobilMilikGarasi = new Mobil();
+              }
+          }```**
+- D. ```class Garasi {
+              private Mobil mobil;
+              public Garasi(Mobil m) {
+                  this.mobil = m;
+              }
+          }```
 - E. `class Garasi implements Mobil { ... }`
 
 ### 26. (Jebakan JDBC PreparedStatement)
@@ -910,38 +922,38 @@ Tuliskan blok kode di dalam ActionListener pada tombol Simpan, yang mengambil da
 
 ```mermaid
 classDiagram
-    class LayananRental {
-        <<interface>>
-        +getBiaya() double
-    }
-
-    class KendaraanDasar {
-        -harga: double
-        +getBiaya() double
-    }
-
-    class RentalDecorator {
+    class KendaraanRental {
         <<abstract>>
-        #layanan: LayananRental
-        +RentalDecorator(LayananRental)
+        +String deskripsi
+        +getDeskripsi() String
+        +getBiaya() double*
+    }
+
+    class MobilStandar {
         +getBiaya() double
+    }
+
+    class FiturTambahanDecorator {
+        <<abstract>>
+        #KendaraanRental kendaraan
+        +getDeskripsi() String*
     }
 
     class PakaiSupir {
-        +PakaiSupir(LayananRental)
+        +getDeskripsi() String
         +getBiaya() double
     }
 
     class PakaiAsuransi {
-        +PakaiAsuransi(LayananRental)
+        +getDeskripsi() String
         +getBiaya() double
     }
 
-    LayananRental <|-- KendaraanDasar
-    LayananRental <|-- RentalDecorator
-    RentalDecorator "1" o-- "1" LayananRental
-    RentalDecorator <|-- PakaiSupir
-    RentalDecorator <|-- PakaiAsuransi
+    KendaraanRental <|-- MobilStandar : Inheritance
+    KendaraanRental <|-- FiturTambahanDecorator : Inheritance
+    FiturTambahanDecorator o-- KendaraanRental : Aggregation (Wraps)
+    FiturTambahanDecorator <|-- PakaiSupir : Inheritance
+    FiturTambahanDecorator <|-- PakaiAsuransi : Inheritance
 ```
 
 **Penjelasan Relasi:**
@@ -955,34 +967,104 @@ classDiagram
 **Implementasi Lengkap dengan Penjelasan:**
 
 ```java
-public class PakaiSupir extends RentalDecorator {
-    // Biaya tambahan untuk opsi supir
-    private static final double BIAYA_SUPIR = 150000;
-
-    /**
-     * Constructor yang menerima komponen LayananRental sebagai parameter
-     * Ini adalah pola Decorator: kita membungkus layanan sebelumnya
-     *
-     * @param layanan Objek LayananRental yang akan dibungkus (bisa KendaraanDasar atau decorator lain)
-     */
-    public PakaiSupir(LayananRental layanan) {
-        super(layanan); // Memanggil constructor dari RentalDecorator untuk menyimpan referensi
+// Concrete Decorator 1
+class PakaiSupir extends FiturTambahanDecorator {
+    public PakaiSupir(KendaraanRental kendaraan) {
+        this.kendaraan = kendaraan;
     }
 
-    /**
-     * Override method getBiaya() untuk menambahkan biaya supir
-     *
-     * Alur pemanggilan (contoh: Kendaraan + Supir + Asuransi):
-     * 1. PakaiAsuransi.getBiaya() → super.getBiaya() + 50000
-     * 2. PakaiSupir.getBiaya() → super.getBiaya() + 150000 (memanggil PakaiAsuransi)
-     * 3. KendaraanDasar.getBiaya() → 100000 (base price)
-     *
-     * Total: 100000 + 150000 + 50000 = 300000
-     */
+    @Override
+    public String getDeskripsi() {
+        return kendaraan.getDeskripsi() + ", Pakai Supir";
+    }
+
     @Override
     public double getBiaya() {
-        // Ambil biaya dari komponen yang dibungkus, kemudian tambahkan biaya supir
-        return super.getBiaya() + BIAYA_SUPIR;
+        return kendaraan.getBiaya() + 150000;
+    }
+}
+
+// Concrete Decorator 2
+class PakaiAsuransi extends FiturTambahanDecorator {
+    public PakaiAsuransi(KendaraanRental kendaraan) {
+        this.kendaraan = kendaraan;
+    }
+
+    @Override
+    public String getDeskripsi() {
+        return kendaraan.getDeskripsi() + ", Pakai Asuransi";
+    }
+
+    @Override
+    public double getBiaya() {
+        return kendaraan.getBiaya() + 50000;
+    }
+}
+```
+
+**Tambahan**
+
+Komponen Utama: **KendaraanRental.java**
+
+```java
+// Component
+abstract class KendaraanRental {
+    String deskripsi = "Kendaraan Standar";
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
+    public abstract double getBiaya();
+}
+```
+
+Concrete Component: **MobilStandar.java**
+
+```java
+// Concrete Component
+class MobilStandar extends KendaraanRental {
+    public MobilStandar() {
+        deskripsi = "Mobil Standar";
+    }
+
+    @Override
+    public double getBiaya() {
+        return 300000; // Harga dasar rental mobil
+    }
+}
+```
+
+Decorator Base Class: **FiturTambahanDecorator.java**
+
+```java
+// Decorator
+abstract class FiturTambahanDecorator extends KendaraanRental {
+    protected KendaraanRental kendaraan; // Objek yang dibungkus
+
+    public abstract String getDeskripsi();
+}
+```
+
+**Main.java**
+
+```java
+public class MainRental {
+    public static void main(String[] args) {
+        // 1. Rental Mobil Standar saja
+        KendaraanRental rental1 = new MobilStandar();
+        System.out.println(rental1.getDeskripsi() + " | Total: Rp " + rental1.getBiaya());
+
+        // 2. Rental Mobil + Supir
+        KendaraanRental rental2 = new MobilStandar();
+        rental2 = new PakaiSupir(rental2);
+        System.out.println(rental2.getDeskripsi() + " | Total: Rp " + rental2.getBiaya());
+
+        // 3. Rental Mobil + Supir + Asuransi (Kombinasi Lengkap)
+        KendaraanRental rental3 = new MobilStandar();
+        rental3 = new PakaiSupir(rental3);
+        rental3 = new PakaiAsuransi(rental3);
+        System.out.println(rental3.getDeskripsi() + " | Total: Rp " + rental3.getBiaya());
     }
 }
 ```
