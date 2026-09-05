@@ -46,19 +46,21 @@ Jadi, ketika digabungkan,
 
 > <br> **multithreading** secara harfiah berarti **banyak untaian eksekusi** <br><br>
 
-Ini menggambarkan kemampuan sebuah program atau sistem untuk menjalankan banyak bagian kode (untaian/thread) secara bersamaan atau hampir bersamaan, alih-alih hanya satu per satu.
+Ini menggambarkan kemampuan sebuah program atau sistem untuk menjalankan banyak bagian kode (untaian/thread) secara bersamaan atau hampir bersamaan, daripada satu per satu.
 
 ![a](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter4/4_01_ThreadDiagram.jpg)
 
 ### Why is Multithreading?
 
-Di awal-awal era komputasi, sebagian besar program dirancang dengan **paradigma sekuensial** (atau serial) yang mana setiap instruksi dalam program dieksekusi satu per satu, secara berurutan, dari awal hingga akhir. Seiring berjalannya waktu dan perkembangan komputer serta kebutuhan pengguna, program sekuensial mulai menunjukkan keterbatasannya:
+Di awal-awal era komputasi, sebagian besar program dirancang dengan **paradigma sekuensial** (atau serial) yang mana setiap instruksi dalam program dieksekusi satu per satu, secara berurutan, dari awal hingga akhir.
 
-- **Antarmuka Pengguna (UI) yang Kaku**: Bayangkan Anda menekan tombol "Download" di sebuah aplikasi. Jika aplikasi itu sekuensial, seluruh UI bisa "beku" (tidak bisa di-klik, digulir, atau diketik) sampai proses download selesai. Ini karena satu-satunya alur eksekusi sedang sibuk menangani download.
-- **Pemanfaatan Sumber Daya yang Kurang Optimal**: Komputer modern mulai memiliki CPU multi-core (lebih dari satu "otak" pemrosesan). Program sekuensial hanya bisa menggunakan satu core CPU saja. Core lain akan menganggur, seperti memiliki banyak juru masak di dapur, tapi hanya satu yang bekerja. Ini adalah pemborosan potensi perangkat keras.
-- **Tugas Berat yang Memperlambat Semuanya:** Untuk tugas-tugas yang membutuhkan waktu lama (misalnya pemrosesan data berukuran besar, perhitungan ilmiah kompleks, atau komunikasi jaringan yang lambat), seluruh aplikasi akan terhenti dan menjadi tidak responsif.
+Seiring berjalannya waktu dan perkembangan komputer serta dinamika kebutuhan pengguna, program sekuensial mulai menunjukkan keterbatasannya:
 
-Keterbatasan program sekuensial mendorong lahirnya solusi-solusi baru berupa kemampuan program untuk menangani banyak tugas yang sedang berjalan pada saat yang bersamaan, atau setidaknya terlihat berjalan pada saat yang bersamaan (_concurrency_). Berangkat dari situ, lahirlah 2 mekanisme dalam mewujudkan konsep tersebut: _multiprocessing_ dan _multithreading_
+- **Antarmuka Pengguna (UI) yang Kaku**: Bayangkan Anda menekan tombol "Download" di sebuah aplikasi. Jika aplikasi itu sekuensial, seluruh UI bisa "nge-_freeze_" (gabisa di-klik, di-_scroll_, atau diketik) sampai proses _download_ selesai. Ini karena satu-satunya alur eksekusi sedang sibuk menangani _download_.
+- **Pemanfaatan Sumber Daya yang Kurang Optimal**: Komputer modern mulai memiliki CPU multi-core (lebih dari satu "otak" pemrosesan). Program sekuensial hanya bisa menggunakan satu core CPU saja. Core lain akhirnya akan menganggur, seperti memiliki banyak juru masak di dapur, tapi hanya satu yang bekerja. Ini adalah pemborosan potensi perangkat keras.
+- **Kebutuhan Proses Komputasi sekarang Semakin Berat:** Kebutuhan pengguna masa kini sangat menuntut tugas-tugas yang membutuhkan waktu lama (misalnya pemrosesan data berukuran besar, perhitungan ilmiah kompleks, atau komunikasi jaringan yang cepat), seluruh aplikasi akan terhenti dan menjadi tidak responsif.
+
+Nah, **Keterbatasan program sekuensial** mendorong lahirnya solusi-solusi baru berupa kemampuan program untuk menangani banyak tugas yang sedang berjalan pada saat yang bersamaan, atau setidaknya terlihat berjalan pada saat yang bersamaan (_concurrency_). Berangkat dari situ, lahirlah 2 mekanisme dalam mewujudkan konsep tersebut: _multiprocessing_ dan _multithreading_
 
 <br>
 
@@ -70,7 +72,7 @@ Kita perlu tahu bahwa **Proses** adalah program yang sedang berjalan (misalnya, 
 
 #### Process-based
 
-Pendekatan ini melibatkan menjalankan beberapa proses yang terpisah secara bersamaan. Setiap proses adalah entitas yang sepenuhnya independen.
+Pendekatan ini menjalankan beberapa **proses yang terpisah** secara bersamaan. Setiap proses adalah entitas yang sepenuhnya independen.
 
 > <br>Bayangkan Anda memiliki beberapa dapur terpisah di gedung yang berbeda. Setiap dapur memiliki koki (proses) dan semua peralatannya sendiri (memori, file, sumber daya). Jika satu dapur mengalami masalah (misalnya, panci terbakar), itu tidak akan mempengaruhi dapur lain sama sekali <br><br>
 
@@ -103,7 +105,8 @@ Pendekatan ini melibatkan menjalankan beberapa thread di dalam satu proses tungg
 - Server web modern yang menggunakan thread pool untuk menangani banyak permintaan klien secara bersamaan dalam satu proses.
 - Aplikasi game, satu thread untuk grafik, satu untuk AI musuh, satu untuk input pemain.
 
-Dalam Java (dan banyak bahasa modern lainnya), fokus utama kita dalam konteks Multithreading Programming adalah pada **_concurrency_ Berbasis Thread**. _Mengapa?_ Karena sebagian besar kebutuhan kita adalah membuat satu aplikasi menjadi lebih responsif dan efisien yang memecah tugas dengan thread yang berbagi sumber daya untuk komunikasi yang cepat. Di sisi lain, _concurrency_ berbasis proses biasanya ditangani oleh sistem operasi dan jarang diimplementasikan langsung di tingkat aplikasi dalam Java, kecuali untuk kasus-kasus sangat spesifik yang memerlukan isolasi ekstrem.
+Fokus utama kita dalam konteks Multithreading Programming adalah pada **_concurrency_ Berbasis Thread**. _Mengapa?_
+Karena sebagian besar kebutuhan kita adalah membuat satu aplikasi menjadi lebih responsif dan efisien yang memecah tugas dengan thread yang berbagi sumber daya untuk komunikasi yang cepat. Di sisi lain, _concurrency_ berbasis proses biasanya ditangani oleh sistem operasi dan jarang diimplementasikan langsung di tingkat aplikasi dalam Java, kecuali untuk kasus-kasus sangat spesifik yang memerlukan isolasi ekstrem.
 
 ### When We Used Multihtreading?
 
@@ -113,6 +116,7 @@ Multithreading sangat berguna dalam skenario berikut:
 - **Aplikasi dengan Antarmuka Pengguna (UI):** Seperti yang kita bahas, agar aplikasi tetap responsif, tugas-tugas seperti memuat data dari internet, memproses gambar, atau menyimpan ke database sebaiknya dilakukan di thread terpisah.
 - **Komputasi Berat:** Misalnya, perhitungan ilmiah yang kompleks, pemrosesan video, atau simulasi. Bagian-bagian dari perhitungan ini bisa dibagi ke beberapa thread.
 - **Server Jaringan dengan Traffic Tinggi:** Server yang melayani banyak permintaan dari klien secara bersamaan. Setiap permintaan klien bisa ditangani oleh thread terpisah.
+- dan sebagainya.
 
 ---
 
@@ -153,9 +157,9 @@ tanpa menunggu thread baru itu selesai.
 
 Ketika melakukan _multihtreading programming_ kita akan sering memanggil `InterruptedException` sebagai sebuah _Checked Exception_ di Java. Hal tersebut berarti _compiler_ Java memaksa kita untuk menanganinya (baik dengan `try-catch` atau dengan mendeklarasikan `throws InterruptedException`).
 
-`InterruptedException` dilemparkan ketika sebuah thread yang sedang dalam status "tidur" (`sleep()`), "menunggu" (`wait()`), atau "bergabung" (`join()`) yang tiba-tiba diinterupsi oleh thread lain.
+`InterruptedException` dilemparkan ketika sebuah thread yang sedang berjalan dalam status "tidur" (`sleep()`), "menunggu" (`wait()`), atau "bergabung" (`join()`) yang tiba-tiba diinterupsi oleh thread lain.
 
-Sehingga, poin utama yang dibahas pada _multithreading programming_ ini adakah bagaimana kita mengelola thread tambahan di luar Main thread untuk menghasilkan program yang lebih cepat dan responsif. Terdapat dua cara umum dalam mengatur thread tambahan pada program Java yaitu dengan memanfaatkan class `Thread` dan implementasi interface `Runnable`.
+Sehingga, poin utama yang dibahas pada _multithreading programming_ ini adalah **bagaimana kita mengelola thread tambahan di luar Main thread** untuk menghasilkan program yang lebih cepat dan responsif. Terdapat dua cara umum dalam mengatur thread tambahan pada program Java yaitu dengan memanfaatkan class `Thread` dan implementasi interface `Runnable`.
 
 <br>
 
@@ -273,7 +277,7 @@ Process finished with exit code 0
 
 ### Cara 2: Implementing interface `Runnable` as a Class
 
-Cara kedua ini sedikit berbeda, tapi lebih disukai dalam banyak kasus. Kita akan membuat class yang mengimplementasikan (menerapkan) interface bawaan Java bernama `Runnable`.
+Cara kedua ini sedikit berbeda, tapi lebih disukai dalam banyak kasus. Kita akan membuat class yang menerapkan _interface_ bawaan Java bernama `Runnable`.
 
 Kalau `Thread` itu "cetakan pekerja", maka `Runnable` itu seperti "daftar tugas" atau "instruksi kerja". Kita bisa memberikan daftar tugas ini kepada siapa saja yang bisa "menjalankannya" (termasuk objek `Thread`).
 
@@ -393,7 +397,32 @@ Process finished with exit code 0
 
 Setelah kita memahami kedua cara dasar tersebut, kita akan mencoba dengan cara yang lebih modern berdasarkan konsep pada cara 2. Sejak Java 8, kita bisa menggunakan **[Lambda Expression](https://www.w3schools.com/java/java_lambda.asp)** untuk mengimplementasikan interface fungsional (interface yang hanya memiliki satu method abstrak) tanpa harus membuat suatu class tertenu. Karena `Runnable` hanya memiliki satu method abstrak yaitu `run()`, kita bisa menulisnya dengan sangat ringkas menggunakan lambda.
 
-Ini sangat berguna ketika tugas yang akan dijalankan oleh thread itu sederhana dan tidak memerlukan class terpisah yang rumit.
+Ini sangat berguna ketika tugas yang akan dijalankan oleh thread itu **sederhana dan tidak memerlukan class terpisah yang rumit**.
+
+Formatnya dengan menulis sebuah function begini di dalam class manapun itu, tanpa membuat class terpisah seperti cara 1 dan cara 2.
+
+```java
+Runnable task = () -> {
+            String threadName = Thread.currentThread().getName();
+
+            try {
+                // ... logic sebelum proses dimulai (misal: log start) ...
+
+                for (int i = 1; i <= /* TODO: tentukan_jumlah_iterasi */; i++) {
+                    System.out.println("[" + threadName + "] Memproses data ke-" + i);
+
+                    // Simulasi delay eksekusi
+                    Thread.sleep(/* TODO: waktu_sleep_dalam_ms */);
+                }
+
+                // ... operasi cleanup atau logic setelah selesai ...
+
+            } catch (InterruptedException e) {
+                // ... handling ketika thread diinterupsi ...
+                System.err.println("[" + threadName + "] Thread terinterupsi: " + e.getMessage());
+            }
+        };
+```
 
 Langung kita buat di `Main.java`
 
